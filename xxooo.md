@@ -1,0 +1,13 @@
+FTP账号资料
+用户：
+mechine_cyh809_cn
+密码：
+HxKntFMKC5SMx9ND
+数据库账号资料
+数据库名：
+mechine
+用户：
+mechine
+密码：
+abc123456
+网站添加成功！
