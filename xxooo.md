@@ -36,3 +36,5 @@ abc123456
 bootstrap
 font-awesome
 jquery
+
+addons/ldcms/view/ldcms2025/index.html:192
