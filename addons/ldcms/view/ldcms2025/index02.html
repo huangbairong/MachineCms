@@ -230,6 +230,260 @@
             text-align: center;
             color: #ccc;
         }
+        
+        /* 动画效果样式 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        /* 增强的悬停效果 */
+        .intro-card {
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .intro-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(44, 90, 160, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .intro-card:hover::before {
+            left: 100%;
+        }
+        
+        .intro-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .intro-card:hover i {
+            animation: pulse 1s infinite;
+            color: #1e4a7a;
+        }
+        
+        .product-card {
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(44, 90, 160, 0.9), rgba(30, 74, 122, 0.9));
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1;
+        }
+        
+        .product-card:hover::after {
+            opacity: 1;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .product-card .card-body {
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s;
+        }
+        
+        .product-card:hover .card-body {
+            color: white;
+        }
+        
+        .product-card:hover .btn {
+            background: white;
+            color: #2c5aa0;
+            border-color: white;
+        }
+        
+        .case-item {
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .case-item:hover {
+            transform: translateY(-8px);
+        }
+        
+        .case-item img {
+            transition: transform 0.4s ease;
+        }
+        
+        .case-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .case-item a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .case-item:hover h5 {
+            color: #2c5aa0;
+        }
+        
+        /* 轮播图标题动画 */
+        .carousel-caption h2 {
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+        
+        .carousel-caption p {
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+        
+        .carousel-caption .btn {
+            animation: bounceIn 1s ease-out 1.5s both;
+        }
+        
+        /* 按钮动画效果 */
+        .btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        /* 新闻卡片动画 */
+        .card {
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        /* 联系表单动画 */
+        .contact-form .form-control {
+            transition: all 0.3s ease;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .contact-form .form-control:focus {
+            border-color: #2c5aa0;
+            transform: scale(1.02);
+            box-shadow: 0 0 0 0.2rem rgba(44, 90, 160, 0.25);
+        }
+        
+        /* 数字计数样式 */
+        .count-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2c5aa0;
+        }
+        
+        /* 导航栏动画 */
+        .navbar-nav .nav-link {
+            position: relative;
+        }
+        
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #2c5aa0;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .navbar-nav .nav-link:hover::after {
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -307,7 +561,7 @@
     <!-- 关于我们 -->
     <section id="about" class="about-section">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title wow fadeInDown" data-wow-delay="0.2s">
                 <h2>关于我们</h2>
                 <p>专业、创新、品质 - 您值得信赖的机械制造合作伙伴</p>
             </div>
@@ -357,7 +611,7 @@
                     <div class="intro-card">
                         <i class="fa fa-industry"></i>
                         <h4>现代化工厂</h4>
-                        <p>拥有15000平方米现代化生产基地，配备先进的生产设备和检测仪器</p>
+                        <p>拥有15000平方米现代化生产基地，配备先进的生产设备</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -389,7 +643,7 @@
     {ld:action action="home_block" model_table_name="product" alias="cate"}
     <section id="products" class="products-section">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title wow fadeInDown" data-wow-delay="0.2s">
                 <h2>{$cate.name}</h2>
                 <p>{$cate['ename']}</p>
             </div>
@@ -397,7 +651,7 @@
             <div class="row">
                 {ld:list cid="$cate['id']" limit='3'}
                 <div class="col-lg-4 col-md-6">
-                    <div class="product-card">
+                    <div class="product-card wow fadeInUp" data-wow-delay="0.{$i}s">
                         <img src="{$item.image}" alt="{$item.title}">
                         <div class="card-body">
                             <h5 class="text-ellipsis">{$item.title}</h5>
@@ -407,7 +661,7 @@
                                     <span class="price-unit">￥</span>
                                     <strong>{$item.price}</strong>
                                 </div>
-                                <a href="#" class="btn btn-primary">了解详情</a>
+                                <a href="{$item.url}" class="btn btn-primary">了解详情</a>
                             </div>
                         </div>
                     </div>
@@ -425,7 +679,7 @@
     {ld:action action="home_block" model_table_name="case" alias="cate"}
     <section id="cases" class="cases-section">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title wow fadeInDown" data-wow-delay="0.2s">
                 <h2>{$cate.name}</h2>
                 <p>{$cate['ename']}</p>
             </div>
@@ -599,6 +853,28 @@
         // 初始化动画
         new WOW().init();
         
+        // 数字计数动画
+        function animateNumbers() {
+            $('.count-number').each(function() {
+                var $this = $(this);
+                var countTo = $this.data('count');
+                if (countTo) {
+                    $({ countNum: 0 }).animate({
+                        countNum: countTo
+                    }, {
+                        duration: 2000,
+                        easing: 'swing',
+                        step: function() {
+                            $this.text(Math.floor(this.countNum));
+                        },
+                        complete: function() {
+                            $this.text(this.countNum);
+                        }
+                    });
+                }
+            });
+        }
+        
         // 平滑滚动
         $(document).ready(function(){
             $("a[href^='#']").on('click', function(e) {
@@ -619,6 +895,53 @@
                 } else {
                     $('.navbar').removeClass('navbar-scrolled');
                 }
+            });
+            
+            // 滚动到关于我们部分时触发数字动画
+            $(window).on('scroll', function() {
+                var aboutSection = $('#about').offset().top;
+                var scrollTop = $(window).scrollTop();
+                var windowHeight = $(window).height();
+                
+                if (scrollTop + windowHeight > aboutSection + 200) {
+                    if (!$('.count-number').hasClass('animated')) {
+                        $('.count-number').addClass('animated');
+                        animateNumbers();
+                    }
+                }
+            });
+            
+            // 轮播图自动播放暂停/恢复
+            $('#heroCarousel').hover(
+                function() {
+                    $(this).carousel('pause');
+                },
+                function() {
+                    $(this).carousel('cycle');
+                }
+            );
+            
+            // 表单验证增强
+            $('.contact-form').on('submit', function(e) {
+                var isValid = true;
+                $(this).find('input[required], textarea[required]').each(function() {
+                    if (!$(this).val().trim()) {
+                        $(this).addClass('is-invalid');
+                        isValid = false;
+                    } else {
+                        $(this).removeClass('is-invalid');
+                    }
+                });
+                
+                if (!isValid) {
+                    e.preventDefault();
+                    layer.msg('请填写所有必填字段', {icon: 2});
+                }
+            });
+            
+            // 输入框获得焦点时移除错误状态
+            $('.contact-form input, .contact-form textarea').on('focus', function() {
+                $(this).removeClass('is-invalid');
             });
         });
     </script>
