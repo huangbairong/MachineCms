@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{$ld.sitetitle}</title>
+        <meta name="keywords" content="{$ld.seo_keywords}" />
+        <meta name="description" content="{$ld.seo_description}" />
+        <link rel="stylesheet" href="__ADDON__/libs/swiper/swiper-bundle.min.css" />
+        <link rel="stylesheet" href="__ADDON__/libs/animate.min.css" />
+
+        <link rel="stylesheet" href="__CDN__/assets/libs/font-awesome/css/font-awesome.min.css" media="screen" type="text/css" />
+        <link rel="stylesheet" rev="stylesheet" href="__ADDON__/libs/bootstrap/bootstrap.min.css" type="text/css" media="all"/>
+
+        <!-- 引入jQuery -->
+        <script src="__CDN__/assets/libs/jquery/dist/jquery.min.js"></script>
+        <script src="__ADDON__/libs/wow.min.js"></script>
+        <script src="__ADDON__/libs/swiper/swiper-bundle.min.js"></script>
+        <script src="__ADDON__/libs/jquery.waypoints.min.js"></script>
+        <script src="__ADDON__/libs/jquery.countup.min.js"></script>
+        <script src="__CDN__/assets/libs/fastadmin-layer/dist/layer.js"></script>
+        <script src="__ADDON__/libs/qrcode.js"></script>
+    </head>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* 导航栏样式 */
+        .navbar {
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c5aa0 !important;
+        }
+        
+        .navbar-nav .nav-link {
+            color: #333 !important;
+            font-weight: 500;
+            margin: 0 15px;
+            transition: all 0.3s;
+        }
+        
+        .navbar-nav .nav-link:hover {
+            color: #2c5aa0 !important;
+        }
+        
+        /* 轮播图样式 */
+        .hero-section {
+            margin-top: 76px;
+            height: 600px;
+            position: relative;
+        }
+        
+        .carousel-item img {
+            height: 600px;
+            object-fit: cover;
+        }
+        
+        .carousel-caption {
+            background: rgba(0,0,0,0.5);
+            padding: 30px;
+            border-radius: 10px;
+        }
+        
+        /* 关于我们样式 */
+        .about-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 3px;
+            background: #2c5aa0;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* 公司介绍样式 */
+        .company-intro {
+            padding: 80px 0;
+        }
+        
+        .intro-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            margin-bottom: 30px;
+            transition: transform 0.3s;
+        }
+        
+        .intro-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .intro-card i {
+            font-size: 48px;
+            color: #2c5aa0;
+            margin-bottom: 20px;
+        }
+        
+        /* 产品中心样式 */
+        .products-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .product-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .product-card .card-body {
+            padding: 20px;
+        }
+        
+        /* 服务案例样式 */
+        .cases-section {
+            padding: 80px 0;
+        }
+        
+        .case-item {
+            margin-bottom: 30px;
+        }
+        
+        .case-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        
+        /* 底部样式 */
+        .footer {
+            background: #333;
+            color: #fff;
+            padding: 50px 0 20px;
+        }
+        
+        .footer h5 {
+            color: #2c5aa0;
+            margin-bottom: 20px;
+        }
+        
+        .footer .list-unstyled li {
+            margin-bottom: 8px;
+        }
+        
+        .footer .list-unstyled a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer .list-unstyled a:hover {
+            color: #2c5aa0;
+        }
+        
+        .copyright {
+            background: #222;
+            padding: 20px 0;
+            margin-top: 30px;
+            text-align: center;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fa fa-cogs"></i> 精工机械制造
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">关于我们</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#company">公司介绍</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products">产品中心</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#cases">服务案例</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">联系我们</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 轮播图区域 -->
+    <section id="home" class="hero-section">
+        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+            </div>
+            
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&h=600&fit=crop" class="d-block w-100" alt="机械制造">
+                    <div class="carousel-caption d-md-block">
+                        <h2>专业机械制造</h2>
+                        <p>20年行业经验，为您提供优质的机械制造解决方案</p>
+                        <a href="#contact" class="btn btn-primary btn-lg">联系我们</a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1567789884554-0b844b597180?w=1200&h=600&fit=crop" class="d-block w-100" alt="精密加工">
+                    <div class="carousel-caption d-md-block">
+                        <h2>精密加工技术</h2>
+                        <p>采用先进设备和工艺，确保产品质量和精度</p>
+                        <a href="#products" class="btn btn-primary btn-lg">查看产品</a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1565611894507-9e5b7bbc8672?w=1200&h=600&fit=crop" class="d-block w-100" alt="工业设备">
+                    <div class="carousel-caption d-md-block">
+                        <h2>工业设备定制</h2>
+                        <p>根据客户需求，提供个性化的设备制造服务</p>
+                        <a href="#about" class="btn btn-primary btn-lg">了解更多</a>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>关于我们</h2>
+                <p>专业、创新、品质 - 您值得信赖的机械制造合作伙伴</p>
+            </div>
+            
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=400&fit=crop" alt="关于我们" class="img-fluid rounded">
+                </div>
+                <div class="col-lg-6">
+                    <h3>专业机械制造领域的领导者</h3>
+                    <p>精工机械制造有限公司成立于2003年，专注于精密机械零件加工、工业设备制造和自动化解决方案。我们拥有现代化的生产基地和经验丰富的技术团队。</p>
+                    
+                    <div class="row mt-4">
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="fa fa-check-circle text-primary me-3"></i>
+                                <span>20年行业经验</span>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="fa fa-check-circle text-primary me-3"></i>
+                                <span>ISO9001质量认证</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="fa fa-check-circle text-primary me-3"></i>
+                                <span>500+成功案例</span>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="fa fa-check-circle text-primary me-3"></i>
+                                <span>24小时技术支持</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 公司介绍 -->
+    <section id="company" class="company-intro">
+        <div class="container">
+            <div class="section-title">
+                <h2>公司实力</h2>
+                <p>专业团队、先进设备、完善服务体系</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="intro-card">
+                        <i class="fa fa-industry"></i>
+                        <h4>现代化工厂</h4>
+                        <p>拥有15000平方米现代化生产基地，配备先进的生产设备和检测仪器</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="intro-card">
+                        <i class="fa fa-users"></i>
+                        <h4>专业团队</h4>
+                        <p>120名专业技术人员，其中高级工程师15名，为您提供专业技术支持</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="intro-card">
+                        <i class="fa fa-certificate"></i>
+                        <h4>质量保证</h4>
+                        <p>通过ISO9001质量管理体系认证，严格的质量控制确保产品品质</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="intro-card">
+                        <i class="fa fa-headphones"></i>
+                        <h4>完善服务</h4>
+                        <p>提供从设计、制造到售后的全程服务，24小时技术支持热线</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 产品中心 -->
+    <section id="products" class="products-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>产品中心</h2>
+                <p>精工制造，品质保证</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1581092334651-ddf26d8e2fdb?w=400&h=200&fit=crop" alt="精密零件">
+                        <div class="card-body">
+                            <h5>精密机械零件</h5>
+                            <p>采用CNC加工中心，精度可达±0.01mm，适用于各种精密设备</p>
+                            <a href="#" class="btn btn-primary">了解详情</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1565611894507-9e5b7bbc8672?w=400&h=200&fit=crop" alt="自动化设备">
+                        <div class="card-body">
+                            <h5>自动化生产设备</h5>
+                            <p>定制化自动化生产线，提高生产效率，降低人工成本</p>
+                            <a href="#" class="btn btn-primary">了解详情</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=400&h=200&fit=crop" alt="模具制造">
+                        <div class="card-body">
+                            <h5>模具制造</h5>
+                            <p>专业模具设计制造，为注塑、冲压等工艺提供高精度模具</p>
+                            <a href="#" class="btn btn-primary">了解详情</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&h=200&fit=crop" alt="工装夹具">
+                        <div class="card-body">
+                            <h5>工装夹具</h5>
+                            <p>定制各种工装夹具，提高加工效率和产品一致性</p>
+                            <a href="#" class="btn btn-primary">了解详情</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1567789884554-0b844b597180?w=400&h=200&fit=crop" alt="机械设备">
+                        <div class="card-body">
+                            <h5>通用机械设备</h5>
+                            <p>生产各类通用机械设备，满足不同行业需求</p>
+                            <a href="#" class="btn btn-primary">了解详情</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=400&h=200&fit=crop" alt="特殊加工">
+                        <div class="card-body">
+                            <h5>特殊工艺加工</h5>
+                            <p>提供激光切割、等离子切割等特殊工艺加工服务</p>
+                            <a href="#" class="btn btn-primary">了解详情</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务案例 -->
+    <section id="cases" class="cases-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>服务案例</h2>
+                <p>成功案例见证我们的专业实力</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="case-item">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=250&fit=crop" alt="汽车制造业案例">
+                        <div class="mt-3">
+                            <h5>汽车制造业项目</h5>
+                            <p>为某知名汽车制造商提供发动机缸体加工设备，提高生产效率30%</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="case-item">
+                        <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=400&h=250&fit=crop" alt="航空航天案例">
+                        <div class="mt-3">
+                            <h5>航空航天项目</h5>
+                            <p>为航空企业定制高精度零件加工，精度达到航空标准要求</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="case-item">
+                        <img src="https://images.unsplash.com/photo-1565611894507-9e5b7bbc8672?w=400&h=250&fit=crop" alt="电子制造业案例">
+                        <div class="mt-3">
+                            <h5>电子制造业项目</h5>
+                            <p>为电子产品制造商提供自动化生产线解决方案，大幅提升产能</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="case-item">
+                        <img src="https://images.unsplash.com/photo-1581092334651-ddf26d8e2fdb?w=400&h=250&fit=crop" alt="医疗器械案例">
+                        <div class="mt-3">
+                            <h5>医疗器械项目</h5>
+                            <p>为医疗设备制造商提供超精密加工服务，满足医疗级精度要求</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="case-item">
+                        <img src="https://images.unsplash.com/photo-1567789884554-0b844b597180?w=400&h=250&fit=crop" alt="能源设备案例">
+                        <div class="mt-3">
+                            <h5>能源设备项目</h5>
+                            <p>为新能源企业制造风力发电设备关键零部件，助力绿色能源发展</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="case-item">
+                        <img src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=400&h=250&fit=crop" alt="食品机械案例">
+                        <div class="mt-3">
+                            <h5>食品机械项目</h5>
+                            <p>为食品加工企业定制自动化包装设备，符合食品安全标准</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部页脚 -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <h5><i class="fa fa-cogs"></i> 精工机械制造</h5>
+                    <p>专业从事精密机械制造20年，为客户提供优质的产品和服务。我们始终坚持"质量第一、客户至上"的经营理念。</p>
+                    <div class="mt-3">
+                        <a href="#" class="text-light me-3"><i class="fa fa-facebook-square fa-2x"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fa fa-twitter-square fa-2x"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fa fa-linkedin-square fa-2x"></i></a>
+                        <a href="#" class="text-light"><i class="fa fa-weibo fa-2x"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6">
+                    <h5>快速链接</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#about">关于我们</a></li>
+                        <li><a href="#company">公司介绍</a></li>
+                        <li><a href="#products">产品中心</a></li>
+                        <li><a href="#cases">服务案例</a></li>
+                        <li><a href="#contact">联系我们</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <h5>产品分类</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">精密零件加工</a></li>
+                        <li><a href="#">自动化设备</a></li>
+                        <li><a href="#">模具制造</a></li>
+                        <li><a href="#">工装夹具</a></li>
+                        <li><a href="#">通用机械</a></li>
+                        <li><a href="#">特殊工艺</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <h5>联系方式</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-map-marker"></i> 地址：上海市浦东新区工业园区123号</li>
+                        <li><i class="fa fa-phone"></i> 电话：021-12345678</li>
+                        <li><i class="fa fa-mobile"></i> 手机：13800138000</li>
+                        <li><i class="fa fa-envelope"></i> 邮箱：info@jingongjixie.com</li>
+                        <li><i class="fa fa-globe"></i> 网址：www.jingongjixie.com</li>
+                        <li><i class="fa fa-fax"></i> 传真：021-12345679</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <p>&copy; 2024 精工机械制造有限公司. 版权所有 | 沪ICP备12345678号 | 技术支持：专业网络公司</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="__CDN__/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // 初始化动画
+        new WOW().init();
+        
+        // 平滑滚动
+        $(document).ready(function(){
+            $("a[href^='#']").on('click', function(e) {
+                e.preventDefault();
+                var target = this.hash;
+                var $target = $(target);
+                if($target.length) {
+                    $('html, body').animate({
+                        'scrollTop': $target.offset().top - 76
+                    }, 800, 'swing');
+                }
+            });
+            
+            // 导航栏背景变化
+            $(window).scroll(function() {
+                if($(this).scrollTop() > 50) {
+                    $('.navbar').addClass('navbar-scrolled');
+                } else {
+                    $('.navbar').removeClass('navbar-scrolled');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
