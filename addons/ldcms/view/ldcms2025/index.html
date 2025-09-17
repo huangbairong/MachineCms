@@ -20,7 +20,7 @@
                         <div class="main-slider__content">
                             <h2>{$item.title}</h2>
                             <p>{$item.description}</p>
-                            <a href="{$item.url}" target="{$item.target}" class="more">{:__('View More')} <i class="fa fa-angle-double-right"></i></a>
+                            <a href="#" target="{$item.target}" class="more">{:__('View More')} <i class="fa fa-angle-double-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -73,19 +73,14 @@
 <!-- 推荐产品  s-->
 {ld:action action="home_block" model_table_name="product" alias="cate"}
 <section class="container product-wrapper">
-    <div class="row">
-        <div class="public-title col-xl-6 col-lg-6 col-12">
+    <div class="row text-center">
+        <div class="public-title col-xl-12 col-lg-12 col-12">
             <h3>{$cate.name}</h3>
             <p>{$cate['ename']}</p>
         </div>
-        <div class="link-section col-xl-6 col-lg-6 col-12 d-flex align-items-center justify-content-end">
-            {ld:sort pid="$cate['id']"}
-            <a href="{$item.url}">{$item.name}</a>
-            {/ld:sort}
-        </div>
     </div>
     <div class="product-list row">
-        {ld:list cid="$cate['id']" limit='8'  }
+        {ld:list cid="$cate['id']" limit='4'  }
         <div class="product-item col-xl-3 col-lg-3 col-md-6 col-sm-6">
             <a href="{$item.url}" class="product-item-wrapper wow fadeInUp" data-wow-delay="0.{$i}s">
                 <div class="pic">
@@ -132,7 +127,7 @@
             <ul class="swiper-wrapper">
                 {ld:list cid="$cate['id']" limit='6'}
                 <li class="swiper-slide wow fadeInRight" data-wow-delay="0.{$i}s">
-                    <a href="{$item.url}" title="{$item.title}">
+                    <a href="#" title="{$item.title}">
                         <div class="swiper-slide-img">
                             <img src="{$item.image}" alt="{$item.title}" />
                         </div>
@@ -167,14 +162,14 @@
             <p>{$cate['ename']}</p>
         </div>
         <div class="news-list row">
-            {ld:list cid="$cate['id']" limit='6'}
+            {ld:list cid="$cate['id']" limit='4'}
             <div class="col-lg-6 col-md-12 wow fadeInUp" data-wow-delay="0.{$i}s">
                 <div class="row news-item">
                     <div class="col-md-4 px-0 news-item-img">
-                        <a href="{$item.url}"><img src="{$item.image}" alt="{$item.title}" /></a>
+                        <a href="#"><img src="{$item.image}" alt="{$item.title}" /></a>
                     </div>
                     <div class="col-md-8 px-0">
-                        <a href="{$item.url}" class="card-body">
+                        <a href="#" class="card-body">
                             <h5 class="card-title text-ellipsis">{$item.title}</h5>
                             <p class="card-info">
                                 <span><i class="fa fa-clock-o"></i> {$item.show_time}</span>
@@ -189,7 +184,7 @@
             {/ld:list}
         </div>
         <div class="text-center news-more">
-            <a href="{$cate.url}" class="public-more">MORE <i class="fa fa-angle-double-right"></i> </a>
+            <a href="#" class="public-more">MORE <i class="fa fa-angle-double-right"></i> </a>
         </div>
     </div>
 </section>
@@ -231,7 +226,7 @@
                 <input type="text" name="mobile" placeholder="您的电话" />
                 <input class="remark" type="text" name="remark" placeholder="您的留言" />
                 {:token()}
-                <button type="submit">立即提交</button>
+                <button disabled type="submit">立即提交</button>
             </form>
         </div>
     </div>
