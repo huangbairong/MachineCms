@@ -1,0 +1,61 @@
+{extend name="base" /} {block name="main"}
+<div class="container Wauto">
+    <div class="bnBox cateBn">
+        {ld:sort cid="$topid"}
+        <div class="cateBnImg" style="background-image: url({$item.big_image})"></div>
+        {/ld:sort}
+    </div>
+    <div class="main w1200">
+        <div class="article w1">
+            <div class="archive-top anim fadeInUp">
+                <div class="archive-title">
+                    <h1 itemprop="headline">{$category.name}</h1>
+                    <span></span>
+                </div>
+                <div class="archive-description">
+                    <p>{$category.seo_description}</p>
+                </div>
+            </div>
+            <div class="subcate anim fadeInUp" data-wow-delay=".3s">
+                <div id="subcate" data-type="category" data-infoid="2">
+                    <ul>
+                        {ld:sort pid="$topid" }<li class="{if $item['id']==$category['id']}active{/if}"><a
+                                href="{$item.url}">{$item.name}</a></li>{/ld:sort}
+                    </ul>
+                </div>
+            </div>
+            <div class="post down top">
+                <div class="row list-header">
+                    <div class="col-8 col-lg-8">
+                        名称
+                    </div>
+                    <div class="d-none d-lg-flex col-lg-2">
+                        发布时间
+                    </div>
+                    <div class="col-4 col-lg-2 text-end">
+                        操作
+                    </div>
+                </div>
+                {ld:list cid="$cate['id']" ext="downlinks" alias="dlist"}
+                <div class="row">
+                    <div class="col-8 col-lg-8">
+                        <h5 class="card-title text-ellipsis">{$dlist.title}</h5>
+                    </div>
+                    <div class="create_time d-none d-lg-flex col-lg-2">
+                        {$dlist.create_time}
+                    </div>
+                    <div class="col-4 col-lg-2 text-end">
+                        <a href="{$dlist.downlinks}" target="_blank" title="{$dlist.title}"class="btn btn-primary">
+                           <i class="fa fa-download"></i> 下载文件
+                        </a>
+                    </div>
+                </div>
+                {/ld:list}
+                <div class="clearfix"></div>
+            </div>
+            <div class="text-center">{$pages}</div>
+        </div>
+    </div>
+</div>
+
+{/block}

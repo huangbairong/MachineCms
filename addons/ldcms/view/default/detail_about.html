@@ -1,0 +1,45 @@
+{extend name="base" /}
+{block name="main"}
+
+<div class="container Wauto">
+     <div class="bnBox cateBn">
+        {ld:sort cid="$topid"}
+        <div class="cateBnImg" style="background-image: url({$item.big_image})"></div>
+        {/ld:sort}
+    </div>
+    <div class="main w1200">
+        <div class="article w1">
+            <div class="archive-top anim fadeInUp">
+                <div class="archive-title">
+                    <h1 itemprop="headline">{$category.name}</h1>
+                    <span></span></div>
+                <div class="archive-description">
+                    <p>{$category.seo_description}</p>
+                </div>
+            </div>
+            <div class="subcate anim fadeInUp" data-wow-delay=".3s">
+                <div id="subcate" data-type="category" data-infoid="2">
+                    <ul>
+                        {ld:sort pid="$topid"}
+                        <li class="{if $item['id']==$category['id']}active{/if}"><a
+                        href="{$item.url}">{$item.name}</a></li>
+                        {/ld:sort}
+
+                    </ul>
+                </div>
+            </div>
+            <div class="post article-box">
+                <header class="article-top">
+                    <h1 class="article-tit">{$category.name}</h1>
+                </header>
+                <article class="article-main">
+                    {$content.content}
+                </article>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('.header').removeClass('opaque').addClass('noOpaque')
+</script>
+{/block}

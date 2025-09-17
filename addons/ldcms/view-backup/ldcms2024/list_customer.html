@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    {include file="common" /}
+  </head>
+
+  <body>
+    <!-- top -->
+    {include file="head" /}
+    <!-- top end -->
+
+    <!-- banner -->
+    <div class="banner">
+      {include file="neibanner" /}
+    </div>
+    <!-- banner end -->
+
+     <!-- 内页导航 -->
+     <section class="neinav">
+      <div class="con1400">
+        {include file="neiernav" /}
+      </div>
+    </section>
+    <!-- 内页导航 end -->
+    <style>
+      .custom-list .custom-item{
+        height: 105px;
+      }
+    </style>
+    <!-- 主体 -->
+    <section class="neimain abouttop">
+      <div class="prodetail">
+        <div class="slideTxtBoxpro">
+          <div class="bd con1400">
+            <div class="custom-list row bg-white">
+                {ld:list limit='60'}
+                <div class="col-6 col-md-4  col-lg-2 custom-item">
+                    <div class="pic wow slideInUp animated idxkh_simg" style="visibility: visible; animation-name: slideInUp">
+                        <img src="{$item.image}" alt="{$item.title}" />
+                    </div>
+                </div>
+                {/ld:list}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 主体 end -->
+
+    <!-- 底部表单 -->
+    {include file="footmess" /}
+    <!-- 底部表单 end -->
+
+    <!-- 底部导航 -->
+    {include file="foot" /}
+    <!-- 底部导航 end -->
+
+    <!-- 公用js -->
+    {include file="footjs" /}
+
+  </body>
+
+</html>
