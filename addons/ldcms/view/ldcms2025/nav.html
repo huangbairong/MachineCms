@@ -14,13 +14,15 @@
                     </li>
                     {ld:nav }
                     <li>
-                        <a href="{$item.url}" class="{if $topid==$item['id']} active {/if}">{$item.name} </a>
+<!--                        <a href="{$item.url}" class="{if $topid==$item['id']} active {/if}">{$item.name} </a>-->
+                        <a href="#" class="{if $topid==$item['id']} active {/if}">公司介绍 </a>
                         {if $item['child']}
                         <div class="sub-menu">
                             <div class="sub-menu-list">
                                 {ld:nav pid="$item['id']"}
                                 <div class="sub-menu-item">
-                                    <a href="{$item.url}">{$item.name}</a>
+                                    <a href="#">公司介绍</a>
+<!--                                    <a href="{$item.url}">{$item.name}</a>-->
                                 </div>
                                 {/ld:nav}
                             </div>
@@ -41,20 +43,20 @@
                     <span class="lang-text">{$ld.langs[$ld.lg]}</span>
                 </div>
                 <div class="lang-dropdown">
-                    <ul>
-                        {foreach $ld.langsurl as $key=>$item}
-                        <li><a href="{$item.url}">{$item.title}</a></li>
-                        {/foreach}
-                    </ul>
+<!--                    <ul>-->
+<!--                        {foreach $ld.langsurl as $key=>$item}-->
+<!--                        <li><a href="{$item.url}">{$item.title}</a></li>-->
+<!--                        {/foreach}-->
+<!--                    </ul>-->
                 </div>
             </div>
-            <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-            </svg>
-            <a href="javascript:;" class="menu-mobile d-block d-sm-none">
-                <img src="__ADDON__/ldcms2025/images/menu.svg" class="open-icon" alt="">
-                <img src="__ADDON__/ldcms2025/images/close-small.svg" class="close-icon" alt="">
-            </a>
+<!--            <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">-->
+<!--                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>-->
+<!--            </svg>-->
+<!--            <a href="javascript:;" class="menu-mobile d-block d-sm-none">-->
+<!--                <img src="__ADDON__/ldcms2025/images/menu.svg" class="open-icon" alt="">-->
+<!--                <img src="__ADDON__/ldcms2025/images/close-small.svg" class="close-icon" alt="">-->
+<!--            </a>-->
         </div>
     </div>
     <div class="search-wrapper">

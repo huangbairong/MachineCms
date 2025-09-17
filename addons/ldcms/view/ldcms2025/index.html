@@ -35,6 +35,41 @@
     </div>
 </section>
 <!--轮播图 e-->
+
+<!-- 关于我们 s -->
+{ld:action action="home_block" model_table_name="page" alias="cate"}
+<section class="about-wrapper d-lg-flex">
+    <div class="left-img overflow-hidden col-lg-6 col-md-12 col-sm-12 wow slideInLeft">
+        {ld:slide name="about"}
+        <img src="{$item.image}" alt="{$item.title}" />
+        {/ld:slide}
+    </div>
+    <div class="about-right col-lg-6 col-md-12 col-sm-12">
+        {ld:content cid="$cate['id']" }
+        <div class="about-right-content wow slideInRight">
+            <h2>{$cate.name}</h2>
+            <p>{$cate['ename']}</p>
+            <div class="info">{$content.content|ld_str_cut=400}</div>
+            <div class="count-wrapper d-flex">
+                {foreach $ld.about_count as $key=>$item}
+                <div class="count-item">
+                    <div class="count-text">
+                        <span class="number">{$item.value1}</span>
+                        <span class="unit">{$item.value2}</span>
+                    </div>
+                    <p>{$item.value3}</p>
+                </div>
+                {/foreach}
+            </div>
+
+            <a href="{$cate.url}" class="public-more">{:__('View More')} <i class="fa fa-angle-double-right"></i> </a>
+        </div>
+        {/ld:content}
+    </div>
+</section>
+{/ld:action}
+<!-- 关于我们 e -->
+
 <!-- 推荐产品  s-->
 {ld:action action="home_block" model_table_name="product" alias="cate"}
 <section class="container product-wrapper">
@@ -80,40 +115,6 @@
 </section>
 {/ld:action}
 <!-- 推荐产品 e -->
-
-<!-- 关于我们 s -->
-{ld:action action="home_block" model_table_name="page" alias="cate"}
-<section class="about-wrapper d-lg-flex">
-    <div class="left-img overflow-hidden col-lg-6 col-md-12 col-sm-12 wow slideInLeft">
-        {ld:slide name="about"}
-        <img src="{$item.image}" alt="{$item.title}" />
-        {/ld:slide}
-    </div>
-    <div class="about-right col-lg-6 col-md-12 col-sm-12">
-        {ld:content cid="$cate['id']" }
-        <div class="about-right-content wow slideInRight">
-            <h2>{$cate.name}</h2>
-            <p>{$cate['ename']}</p>
-            <div class="info">{$content.content|ld_str_cut=400}</div>
-            <div class="count-wrapper d-flex">
-                {foreach $ld.about_count as $key=>$item}
-                <div class="count-item">
-                    <div class="count-text">
-                        <span class="number">{$item.value1}</span>
-                        <span class="unit">{$item.value2}</span>
-                    </div>
-                    <p>{$item.value3}</p>
-                </div>
-                {/foreach}
-            </div>
-
-            <a href="{$cate.url}" class="public-more">{:__('View More')} <i class="fa fa-angle-double-right"></i> </a>
-        </div>
-        {/ld:content}
-    </div>
-</section>
-{/ld:action}
-<!-- 关于我们 e -->
 
 <!-- 案例展示 s-->
 {ld:action action="home_block" model_table_name="case" alias="cate"}
