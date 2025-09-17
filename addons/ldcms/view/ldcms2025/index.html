@@ -191,27 +191,6 @@
 {/ld:action}
 <!-- 新闻中心 e -->
 
-<!-- 合作客户 s -->
-{ld:action action="home_block" model_table_name="wordlist" alias="cate"}
-<section class="custom-wrapper">
-    <div class="container">
-        <div class="public-title">
-            <h3>{$cate.name}</h3>
-            <p>{$cate['ename']}</p>
-        </div>
-        <div class="custom-list row">
-            {ld:list cid="$cate['id']" limit='12'}
-            <div class="col-6 col-md-4 col-lg-2 custom-item">
-                <div class="pic wow zoomIn">
-                    <img src="{$item.image}" alt="{$item.title}" />
-                </div>
-            </div>
-            {/ld:list}
-        </div>
-    </div>
-</section>
-{/ld:action}
-<!-- 合作客户 e -->
 
 <!-- 留言表单 s -->
 <section class="contact-wrapper wow fadeInUp">

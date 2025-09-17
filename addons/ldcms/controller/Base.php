@@ -13,7 +13,7 @@ class Base extends Frontend
 {
     protected $noNeedLogin = '*';
     protected $noNeedRight = '*';
-    protected $addon = 'machine-cms';
+    protected $addon = 'ldcms';
     protected $categoryInfo = []; //栏目信息
     protected $addonConfig = []; //配置
     protected $contentInfo = []; //内容页
