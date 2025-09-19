@@ -23,27 +23,51 @@
         <script src="__ADDON__/libs/qrcode.js"></script>
     </head>
     <style>
+        /* CSS变量定义 */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --card-gradient: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --border-radius: 20px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 10px 30px rgba(102, 126, 234, 0.1);
+            --hover-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
         body {
-            font-family: 'Microsoft YaHei', Arial, sans-serif;
-            line-height: 1.6;
+            font-family: 'Microsoft YaHei', 'PingFang SC', 'Segoe UI', Arial, sans-serif;
+            line-height: 1.7;
             margin: 0;
             padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-attachment: fixed;
         }
 
         /* 导航栏样式 */
         .navbar {
-            background: #fff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
+            transition: all 0.3s ease;
         }
 
         .navbar-brand {
-            font-size: 24px;
-            font-weight: bold;
-            color: #2c5aa0 !important;
+            font-size: 26px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .navbar-nav .nav-link {
@@ -54,14 +78,30 @@
         }
 
         .navbar-nav .nav-link:hover {
-            color: #2c5aa0 !important;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transform: translateY(-2px);
         }
 
         /* 轮播图样式 */
         .hero-section {
             margin-top: 76px;
-            height: 600px;
+            height: 650px;
             position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            z-index: 1;
         }
 
         .carousel-item {
@@ -69,10 +109,11 @@
         }
         
         .carousel-item img, .carousel-item video {
-            height: 600px;
+            height: 650px;
             object-fit: cover;
-            transition: transform 0.5s ease-in-out;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             transform: scale(1);
+            filter: brightness(0.9) contrast(1.1);
         }
         
         .carousel-item.active img, .carousel-item.active video {
@@ -84,15 +125,32 @@
         }
 
         .carousel-caption {
-            background: rgba(0,0,0,0.5);
-            padding: 30px;
-            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.8));
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            z-index: 2;
+            position: relative;
         }
 
         /* 关于我们样式 */
         .about-section {
-            padding: 80px 0;
-            background: #f8f9fa;
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            position: relative;
+        }
+        
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%23667eea" stop-opacity="0.1"/><stop offset="100%" stop-color="%23667eea" stop-opacity="0"/></radialGradient></defs><circle cx="10" cy="10" r="10" fill="url(%23a)"/></svg>') repeat;
+            opacity: 0.3;
         }
 
         .section-title {
@@ -109,28 +167,35 @@
 
         .section-title::after {
             content: '';
-            width: 60px;
-            height: 3px;
-            background: #2c5aa0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             position: absolute;
-            bottom: -10px;
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
+            border-radius: 2px;
+            box-shadow: 0 2px 4px rgba(102, 126, 234, 0.3);
         }
 
         /* 公司介绍样式 */
         .company-intro {
-            padding: 80px 0;
+            padding: 100px 0;
+            background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
+            position: relative;
         }
 
         .intro-card {
-            background: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.1);
             text-align: center;
             margin-bottom: 30px;
-            transition: transform 0.3s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
 
         .intro-card:hover {
@@ -138,24 +203,32 @@
         }
 
         .intro-card i {
-            font-size: 48px;
-            color: #2c5aa0;
-            margin-bottom: 20px;
+            font-size: 56px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
+            display: inline-block;
+            filter: drop-shadow(0 2px 4px rgba(102, 126, 234, 0.2));
         }
 
         /* 产品中心样式 */
         .products-section {
-            padding: 80px 0;
-            background: #f8f9fa;
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            position: relative;
         }
 
         .product-card {
-            background: #fff;
-            border-radius: 10px;
+            background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.1);
             margin-bottom: 30px;
-            transition: transform 0.3s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
         }
 
         .product-card:hover {
@@ -197,7 +270,8 @@
 
         /* 服务案例样式 */
         .cases-section {
-            padding: 80px 0;
+            padding: 100px 0;
+            background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
         }
 
         .case-item {
@@ -213,14 +287,29 @@
 
         /* 底部样式 */
         .footer {
-            background: #333;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
             color: #fff;
-            padding: 50px 0 20px;
+            padding: 60px 0 20px;
+            position: relative;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.5), transparent);
         }
 
         .footer h5 {
-            color: #2c5aa0;
-            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
+            font-weight: 600;
         }
 
         .footer .list-unstyled li {
@@ -355,13 +444,13 @@
         }
         
         .intro-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
         }
         
         .intro-card:hover i {
-            animation: pulse 1s infinite;
-            color: #1e4a7a;
+            animation: bounceIn 0.8s ease-out;
+            transform: scale(1.1);
         }
         
         .product-card {
@@ -388,8 +477,8 @@
         }
         
         .product-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(102, 126, 234, 0.2);
         }
         
         .product-card .card-body {
@@ -414,7 +503,7 @@
         }
         
         .case-item:hover {
-            transform: translateY(-8px);
+            transform: translateY(-12px) scale(1.02);
         }
         
         .case-item img {
@@ -422,7 +511,8 @@
         }
         
         .case-item:hover img {
-            transform: scale(1.1);
+            transform: scale(1.15);
+            filter: brightness(1.1) saturate(1.2);
         }
         
         .case-item a {
@@ -431,7 +521,10 @@
         }
         
         .case-item:hover h5 {
-            color: #2c5aa0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         /* 轮播图标题动画 */
@@ -461,15 +554,16 @@
             left: 50%;
             width: 0;
             height: 0;
-            background: rgba(255,255,255,0.3);
+            background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 100%);
             border-radius: 50%;
             transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .btn:hover::before {
-            width: 300px;
-            height: 300px;
+            width: 350px;
+            height: 350px;
+            opacity: 0.8;
         }
         
         /* 新闻卡片动画 */
@@ -478,8 +572,8 @@
         }
         
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.15);
         }
         
         /* 联系表单动画 */
@@ -489,16 +583,21 @@
         }
         
         .contact-form .form-control:focus {
-            border-color: #2c5aa0;
+            border-color: #667eea;
             transform: scale(1.02);
-            box-shadow: 0 0 0 0.2rem rgba(44, 90, 160, 0.25);
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+            background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
         }
         
         /* 数字计数样式 */
         .count-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #2c5aa0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 4px rgba(102, 126, 234, 0.1);
         }
         
         /* 导航栏动画 */
@@ -512,14 +611,227 @@
             bottom: 0;
             left: 50%;
             width: 0;
-            height: 2px;
-            background: #2c5aa0;
-            transition: all 0.3s ease;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             transform: translateX(-50%);
+            box-shadow: 0 2px 4px rgba(102, 126, 234, 0.3);
         }
         
         .navbar-nav .nav-link:hover::after {
             width: 100%;
+            opacity: 1;
+        }
+        
+        /* 响应式优化 */
+        @media (max-width: 1200px) {
+            .hero-section {
+                height: 500px;
+            }
+            
+            .carousel-item img, .carousel-item video {
+                height: 500px;
+            }
+            
+            .intro-card {
+                padding: 30px 20px;
+            }
+            
+            .section-title h2 {
+                font-size: 32px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero-section {
+                height: 450px;
+                margin-top: 70px;
+            }
+            
+            .carousel-item img, .carousel-item video {
+                height: 450px;
+            }
+            
+            .carousel-caption {
+                padding: 25px;
+                border-radius: 15px;
+            }
+            
+            .carousel-caption h2 {
+                font-size: 28px;
+            }
+            
+            .about-section, .company-intro, .products-section, .cases-section {
+                padding: 60px 0;
+            }
+            
+            .intro-card {
+                margin-bottom: 20px;
+            }
+            
+            .intro-card i {
+                font-size: 48px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar-brand {
+                font-size: 22px;
+            }
+            
+            .hero-section {
+                height: 400px;
+                margin-top: 60px;
+            }
+            
+            .carousel-item img, .carousel-item video {
+                height: 400px;
+            }
+            
+            .carousel-caption {
+                padding: 20px 15px;
+                bottom: 15px;
+                left: 15px;
+                right: 15px;
+                border-radius: 12px;
+            }
+            
+            .carousel-caption h2 {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+            
+            .carousel-caption p {
+                font-size: 14px;
+                margin-bottom: 15px;
+            }
+            
+            .about-section, .company-intro, .products-section, .cases-section {
+                padding: 50px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 24px;
+            }
+            
+            .intro-card {
+                padding: 25px 15px;
+                margin-bottom: 15px;
+            }
+            
+            .intro-card i {
+                font-size: 40px;
+                margin-bottom: 15px;
+            }
+            
+            .intro-card h4 {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+            
+            .footer {
+                padding: 40px 0 15px;
+            }
+            
+            .footer .col-lg-4, .footer .col-lg-3, .footer .col-lg-2 {
+                margin-bottom: 25px;
+            }
+            
+            .count-number {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-section {
+                height: 350px;
+                margin-top: 55px;
+            }
+            
+            .carousel-item img, .carousel-item video {
+                height: 350px;
+            }
+            
+            .carousel-caption {
+                padding: 15px 10px;
+                bottom: 10px;
+                left: 10px;
+                right: 10px;
+            }
+            
+            .carousel-caption h2 {
+                font-size: 20px;
+            }
+            
+            .carousel-caption p {
+                font-size: 13px;
+                display: none;
+            }
+            
+            .carousel-caption .btn {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+            
+            .section-title h2 {
+                font-size: 22px;
+            }
+            
+            .intro-card {
+                padding: 20px 10px;
+            }
+            
+            .intro-card i {
+                font-size: 36px;
+            }
+            
+            .intro-card h4 {
+                font-size: 16px;
+            }
+            
+            .about-section, .company-intro, .products-section, .cases-section {
+                padding: 40px 0;
+            }
+            
+            .product-card .card-body {
+                padding: 15px;
+            }
+            
+            .case-item img {
+                height: 200px;
+            }
+            
+            .count-number {
+                font-size: 1.8rem;
+            }
+            
+            .contact-form {
+                padding: 20px 15px;
+            }
+        }
+        
+        /* 滚动条样式美化 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
         }
     </style>
 </head>

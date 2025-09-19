@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{$ld.sitetitle}</title>
+    <meta name="keywords" content="{$ld.seo_keywords}"/>
+    <meta name="description" content="{$ld.seo_description}"/>
+    <link rel="stylesheet" href="__ADDON__/libs/swiper/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="__ADDON__/libs/animate.min.css"/>
+
+    <link rel="stylesheet" href="__CDN__/assets/libs/font-awesome/css/font-awesome.min.css" media="screen" type="text/css"/>
+    <link rel="stylesheet" rev="stylesheet" href="__ADDON__/libs/bootstrap/bootstrap.min.css" type="text/css" media="all"/>
+    <link rel="stylesheet" href="__ADDON__/ldcms2025/css/style03.css?v=1.1"/>
+
+    <!-- 引入jQuery -->
+    <script src="__CDN__/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="__ADDON__/libs/wow.min.js"></script>
+    <script src="__ADDON__/libs/swiper/swiper-bundle.min.js"></script>
+    <script src="__ADDON__/libs/jquery.waypoints.min.js"></script>
+    <script src="__ADDON__/libs/jquery.countup.min.js"></script>
+    <script src="__CDN__/assets/libs/fastadmin-layer/dist/layer.js"></script>
+    <script src="__ADDON__/libs/qrcode.js"></script>
+    <script src="__ADDON__/ldcms2025/js/styles.js"></script>
+</head>
+<body class="bg-light">
+<header class="bg-white sticky-top shadow-sm">
+    <div class="container h-100 px-3 d-flex align-items-center justify-content-between">
+        <div class="logo d-flex align-items-center" style="min-width: 180px;">
+            <a href="{:addon_url('ldcms/index/index')}" class="d-flex align-items-center">
+                <img src="{$ld.logo1|cdnurl}" alt="{$ld.sitetitle}" style="height: 45px; width: auto; margin-right: 12px;"/>
+                <span class="brand-name d-none d-md-inline" style="font-weight: 600; font-size: 18px; color: #333;">{$ld.sitetitle}</span>
+            </a>
+        </div>
+        <!-- 导航和功能按钮容器 -->
+        <div class="nav-pc d-flex justify-content-center align-items-center flex-grow-1" id="menuContainer">
+            <nav class="menu">
+                <ul class="d-flex justify-content-center align-items-center">
+                    <li class="d-none d-sm-block">
+                        <a {if $topid===0}class="active" {/if} href="{:addon_url('ldcms/index/index')}">{:__('Home')}</a>
+                    </li>
+                    {ld:nav }
+                    <li>
+                        <!--                        <a href="{$item.url}" class="{if $topid==$item['id']} active {/if}">{$item.name} </a>-->
+                        <a href="#" class="{if $topid==$item['id']} active {/if}">公司介绍 </a>
+                        {if $item['child']}
+                        <div class="sub-menu">
+                            <div class="sub-menu-list">
+                                {ld:nav pid="$item['id']"}
+                                <div class="sub-menu-item">
+                                    <a href="#">公司介绍</a>
+                                    <!--                                    <a href="{$item.url}">{$item.name}</a>-->
+                                </div>
+                                {/ld:nav}
+                            </div>
+                        </div>
+                        {/if}
+                    </li>
+                    {/ld:nav}
+                </ul>
+            </nav>
+        </div>
+        <!-- 功能按钮区域 -->
+        <div class="header-actions d-flex align-items-center" style="min-width: 200px; justify-content: flex-end;">
+            <button class="search-toggle btn btn-outline-secondary me-2 d-none d-md-inline-flex" style="border: none; background: transparent; padding: 8px 12px;">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </button>
+            <div class="lang-wrapper me-2">
+                <div class="lang-btn btn btn-outline-primary" style="padding: 8px 12px; border-radius: 25px; font-size: 14px;">
+                    <svg class="lang-icon me-1" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                    </svg>
+                    <span class="lang-text">{$ld.langs[$ld.lg]}</span>
+                </div>
+                <div class="lang-dropdown">
+                    <ul>
+                        {foreach $ld.langsurl as $key=>$item}
+                        <li><a href="{$item.url}">{$item.title}</a></li>
+                        {/foreach}
+                    </ul>
+                </div>
+            </div>
+            <a href="javascript:;" class="menu-mobile btn btn-outline-secondary d-block d-lg-none" style="padding: 8px;">
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </a>
+        </div>
+    </div>
+    <div class="search-wrapper">
+        <form action="{:addon_url('ldcms/search/index')}" class="d-flex search-wrapper-content align-items-center">
+            <input type="text" name="search" class="search-input" placeholder="{:__('Please enter keywords')}"/>
+            <button type="submit" class="search-submit">
+                <i class="fa fa-search"></i> {:__('Search')}
+            </button>
+            <div class="search-close d-flex justify-content-center align-items-center">
+                <img src="__ADDON__/ldcms2025/images/close-small.svg" alt="关闭"/>
+            </div>
+        </form>
+    </div>
+</header>
+<main>
+    <!--轮播图 s-->
+    <section class="main-slider swiper-container banner-pc">
+        <div class="swiper-wrapper">
+            {ld:slide name="banner"}
+            <div class="swiper-slide">
+                {if $item.is_video}
+                <video class="swiper-silde-img" poster="{$item.image}" src="{$item.video}" autoplay loop muted></video>
+                {else /}
+                <img class="swiper-silde-img" src="{$item.image}" alt="{$item.title}">
+                {/if}
+
+                <div class="image-layer"></div>
+                <div class="image-layer-overlay"></div>
+                <div class="container swiper-slide-content">
+                    <div class="row w-100">
+                        <div class="col-lg-8">
+                            <div class="main-slider__content">
+                                <h2>{$item.title}</h2>
+                                <p>{$item.description}</p>
+                                <a href="#" target="{$item.target}" class="more">{:__('View More')} <i class="fa fa-angle-double-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/ld:slide}
+        </div>
+        <div class="swiper-pagination" id="main-slider-pagination"></div>
+        <div class="main-slider__nav">
+            <div class="swiper-button-prev" id="main-slider__swiper-button-prev"><i class="fa fa-angle-left"></i></div>
+            <div class="swiper-button-next" id="main-slider__swiper-button-next"><i class="fa fa-angle-right"></i></div>
+        </div>
+    </section>
+    <!--轮播图 e-->
+
+    <!-- 关于我们 s -->
+    {ld:action action="home_block" model_table_name="page" alias="cate"}
+    <section class="about-wrapper">
+        <div class="container-fluid">
+            <div class="row g-0 align-items-center">
+                <div class="col-lg-6 order-lg-1 order-2">
+                    <div class="left-img overflow-hidden wow slideInLeft" style="height: 500px;">
+                        {ld:slide name="about"}
+                        <img src="{$item.image}" alt="{$item.title}" style="width: 100%; height: 100%; object-fit: cover;"/>
+                        {/ld:slide}
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-2 order-1">
+                    <div class="about-right py-5 px-4 px-lg-5">
+                        {ld:content cid="$cate['id']" }
+                        <div class="about-right-content wow slideInRight">
+                            <div class="mb-4">
+                                <h2 class="mb-3" style="font-size: 2.5rem; font-weight: 700; color: #2c3e50;">{$cate.name}</h2>
+                                <p class="text-muted mb-4" style="font-size: 1.1rem; letter-spacing: 1px;">{$cate['ename']}</p>
+                            </div>
+                            <div class="info mb-4" style="line-height: 1.8; color: #555; font-size: 16px;">{$content.content|ld_str_cut=400}</div>
+                            <div class="count-wrapper d-flex flex-wrap gap-4 mb-4">
+                                {foreach $ld.about_count as $key=>$item}
+                                <div class="count-item text-center" style="min-width: 120px;">
+                                    <div class="count-text mb-2">
+                                        <span class="number" style="font-size: 2.5rem; font-weight: 700; color: #007bff;">{$item.value1}</span>
+                                        <span class="unit" style="font-size: 1.2rem; color: #6c757d;">{$item.value2}</span>
+                                    </div>
+                                    <p class="mb-0" style="color: #495057; font-weight: 500;">{$item.value3}</p>
+                                </div>
+                                {/foreach}
+                            </div>
+                            <a href="{$cate.url}" class="btn btn-primary btn-lg" style="padding: 12px 30px; border-radius: 25px; text-decoration: none;">
+                                {:__('View More')} <i class="fa fa-angle-double-right ms-2"></i>
+                            </a>
+                        </div>
+                        {/ld:content}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {/ld:action}
+    <!-- 关于我们 e -->
+
+    <!-- 推荐产品  s-->
+    {ld:action action="home_block" model_table_name="product" alias="cate"}
+    <section class="product-wrapper py-5" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <div class="public-title">
+                        <h3 class="mb-3" style="font-size: 2.5rem; font-weight: 700; color: #2c3e50;">{$cate.name}</h3>
+                        <p class="text-muted" style="font-size: 1.1rem; letter-spacing: 1px;">{$cate['ename']}</p>
+                        <div class="title-divider mx-auto" style="width: 60px; height: 3px; background: linear-gradient(45deg, #007bff, #0056b3); margin-top: 1rem;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-list row g-4">
+                {ld:list cid="$cate['id']" limit='4' }
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                    <div class="product-item card h-100 border-0 shadow-sm wow fadeInUp" data-wow-delay="0.{$i}s" style="transition: all 0.3s ease; border-radius: 15px; overflow: hidden;">
+                        <a href="{$item.url}" class="text-decoration-none h-100 d-flex flex-column">
+                            <div class="pic position-relative overflow-hidden" style="height: 250px;">
+                                <img src="{$item.image}" alt="{$item.title}" class="w-100 h-100" style="object-fit: cover; transition: transform 0.3s ease;"/>
+                                <div class="product-overlay position-absolute w-100 h-100" style="top: 0; left: 0; background: rgba(0, 123, 255, 0.1); opacity: 0; transition: opacity 0.3s ease;"></div>
+                            </div>
+                            <div class="card-body d-flex flex-column justify-content-between p-4">
+                                <div>
+                                    <h5 class="product-item-title mb-2" style="font-weight: 600; color: #2c3e50; line-height: 1.4;">{$item.title}</h5>
+                                    <p class="product-item-info text-muted mb-3" style="font-size: 14px; line-height: 1.5;">{$item.description|ld_str_cut=80}</p>
+                                </div>
+                                <div class="product-item-bottom d-flex align-items-center justify-content-between">
+                                    <div class="price">
+                                        <span class="price-unit text-danger" style="font-size: 16px;">￥</span>
+                                        <strong class="text-danger" style="font-size: 20px; font-weight: 700;">{$item.price}</strong>
+                                    </div>
+                                    <span class="btn btn-outline-primary btn-sm" style="border-radius: 20px; padding: 5px 15px; font-size: 12px;">
+                                        查看详情 <i class="fa fa-arrow-right ms-1"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {/ld:list}
+            </div>
+            <div class="text-center mt-5">
+                <a href="{$cate.url}" class="btn btn-primary btn-lg" style="padding: 12px 40px; border-radius: 25px; font-weight: 600; text-decoration: none;">
+                    查看更多产品 <i class="fa fa-arrow-right ms-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+    {/ld:action}
+    <!-- 推荐产品 e -->
+
+    <!-- 案例展示 s-->
+    {ld:action action="home_block" model_table_name="case" alias="cate"}
+    <section class="case-wrapper">
+        <div class="container position-relative">
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="public-title">
+                    <h3>{$cate.name}</h3>
+                    <p>{$cate['ename']}</p>
+                </div>
+                <a href="{$cate.url}" class="public-more">MORE <i class="fa fa-angle-double-right"></i> </a>
+            </div>
+
+            <div class="swiper row case-swiper">
+                <ul class="swiper-wrapper">
+                    {ld:list cid="$cate['id']" limit='6'}
+                    <li class="swiper-slide wow fadeInRight" data-wow-delay="0.{$i}s">
+                        <a href="#" title="{$item.title}">
+                            <div class="swiper-slide-img">
+                                <img src="{$item.image}" alt="{$item.title}"/>
+                            </div>
+                            <div class="case-content-wrapper">
+                                <h3>{$item.title}</h3>
+                                <p>{$item.description}</p>
+                            </div>
+                        </a>
+                    </li>
+                    {/ld:list}
+                </ul>
+            </div>
+            <!-- Add Arrows -->
+            <div class="case-next">
+                <i class="fa fa-angle-right"></i>
+            </div>
+            <div class="case-prev">
+                <i class="fa fa-angle-left"></i>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+    {/ld:action}
+    <!-- 案例展示 e -->
+
+    <!-- 新闻中心 s -->
+    {ld:action action="home_block" model_table_name="news" alias="cate" key="n"}
+    <section class="news-wrapper">
+        <div class="container">
+            <div class="public-title">
+                <h3>{$cate.name}</h3>
+                <p>{$cate['ename']}</p>
+            </div>
+            <div class="news-list row">
+                {ld:list cid="$cate['id']" limit='4'}
+                <div class="col-lg-6 col-md-12 wow fadeInUp" data-wow-delay="0.{$i}s">
+                    <div class="row news-item">
+                        <div class="col-md-4 px-0 news-item-img">
+                            <a href="#"><img src="{$item.image}" alt="{$item.title}"/></a>
+                        </div>
+                        <div class="col-md-8 px-0">
+                            <a href="#" class="card-body">
+                                <h5 class="card-title text-ellipsis">{$item.title}</h5>
+                                <p class="card-info">
+                                    <span><i class="fa fa-clock-o"></i> {$item.show_time}</span>
+                                    <span><i class="fa fa-eye"></i> {$item.visits}</span>
+                                </p>
+                                <p class="card-text text-ellipsis-3">{$item.seo_description|ld_str_cut=60}</p>
+                                <p class="more">MORE <i class="fa fa-angle-double-right"> </i></p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {/ld:list}
+            </div>
+            <div class="text-center news-more">
+                <a href="#" class="public-more">MORE <i class="fa fa-angle-double-right"></i> </a>
+            </div>
+        </div>
+    </section>
+    {/ld:action}
+    <!-- 新闻中心 e -->
+
+
+    <!-- 留言表单 s -->
+    <section class="contact-wrapper py-5 wow fadeInUp" style="background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);">
+        <div class="container">
+            <div class="contact-content">
+                <div class="public-title text-center mb-5">
+                    <h3 class="text-white mb-3" style="font-size: 2.5rem; font-weight: 700;">提供优质服务</h3>
+                    <p class="text-white-50" style="font-size: 1.1rem; letter-spacing: 1px;">随时与我们联系</p>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <form class="contact-form bg-white p-4 rounded-3 shadow" action="{:addon_url('ldcms/diyform/message')}" method="post" style="border-radius: 15px !important;">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <input type="text" name="uname" class="form-control form-control-lg" placeholder="您的姓名" style="border-radius: 10px; border: 2px solid #e9ecef; padding: 15px;"/>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" name="mobile" class="form-control form-control-lg" placeholder="联系电话" style="border-radius: 10px; border: 2px solid #e9ecef; padding: 15px;"/>
+                                </div>
+                                <div class="col-12">
+                                    <textarea name="remark" class="form-control" rows="4" placeholder="请输入您的留言内容..." style="border-radius: 10px; border: 2px solid #e9ecef; padding: 15px; resize: vertical;"></textarea>
+                                </div>
+                                <div class="col-12 text-center mt-4">
+                                    {:token()}
+                                    <button type="submit" class="btn btn-primary btn-lg px-5" style="border-radius: 25px; padding: 12px 40px; font-weight: 600;">
+                                        提交留言 <i class="fa fa-paper-plane ms-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<footer class="bg-dark text-white py-5">
+    <div class="container">
+        <!-- 友情链接区域 -->
+        <div class="footer-link row mb-4 pb-4 border-bottom border-secondary">
+            <div class="col-md-6">
+                <div class="public-title mb-3">
+                    <h5 class="text-white mb-2">友情链接</h5>
+                    <p class="text-white-50 small">Friendly Links</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <ul class="list-inline mb-0">
+                    {ld:link name='link'}
+                    <li class="list-inline-item me-3">
+                        <a href="#" target="{$item.target}" class="text-white-50 text-decoration-none hover-primary">{$item.title}</a>
+                    </li>
+                    {/ld:link}
+                </ul>
+            </div>
+        </div>
+        
+        <!-- 主要内容区域 -->
+        <div class="row">
+            <div class="footer-menu col-lg-8 col-md-7">
+                <div class="row">
+                    {ld:nav}
+                    {if $item.child>0}
+                    <div class="col-md-6 col-sm-6 mb-4">
+                        <h6 class="text-white mb-3">{$item.name}</h6>
+                        <ul class="list-unstyled">
+                            {ld:sort pid="$item['id']" alias="nav2"}
+                            <li class="mb-2">
+                                <a href="#" title="{$nav2.name}" class="text-white-50 text-decoration-none hover-primary small">{$nav2.name}</a>
+                            </li>
+                            {/ld:sort}
+                        </ul>
+                    </div>
+                    {/if}
+                    {/ld:nav}
+                </div>
+            </div>
+            
+            <div class="footer-contact col-lg-4 col-md-5">
+                <h6 class="text-white mb-3">联系我们</h6>
+                <div class="contact-info mb-4">
+                    <p class="text-white-50 mb-2">
+                        <i class="fa fa-phone me-2"></i>{$ld.tel}
+                    </p>
+                    <p class="text-white-50 mb-2">
+                        <i class="fa fa-map-marker me-2"></i>{$ld.address}
+                    </p>
+                    <p class="text-white-50 mb-2">
+                        <i class="fa fa-envelope me-2"></i>{$ld.email}
+                    </p>
+                </div>
+                
+                <div class="qrcodes">
+                    <h6 class="text-white mb-3">关注我们</h6>
+                    <div class="row g-3">
+                        {ld:slide name='qrcode'}
+                        <div class="col-6">
+                            <div class="qrcode-img text-center">
+                                <img src="{$item.image}" alt="{$item.title}" class="img-fluid mb-2" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;"/>
+                                <p class="text-white-50 small mb-0">{$item.title}</p>
+                            </div>
+                        </div>
+                        {/ld:slide}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div class="copyright bg-dark border-top border-secondary py-3">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <p class="text-white-50 mb-0 small">
+                    {$ld.copyright}
+                </p>
+            </div>
+            <div class="col-md-4 text-md-end">
+                <div class="footer-links">
+                    <a href="#" class="text-white-50 text-decoration-none me-3 small">网站地图</a>
+                    <a href="#" target="_blank" rel="nofollow" class="text-white-50 text-decoration-none small">{:__('ICP')}:{$ld.icp}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="backTop">
+    {if $ld.phone}
+    <span class="ft-tel"><i class="fa fa-phone"></i><small class="telTop"><a href="#" style="color: #333;">{$ld.phone}</a></small></span>
+    {/if}
+    {if $ld.wechat}
+    <span class="ft-wx"><i class="fa fa-wechat"></i><small class="weixin"><b class="fa fa-caret-right"></b><img src="{$ld.wechat}" alt="{:__('ScanQRCode')}"></small></span>
+    {/if}
+    {if $ld.qq}
+    <span class="ft-qq"><a href="#" target="_blank" class="socialLink s-qq" rel="nofollow"><i class="fa fa-qq"></i></a></span>
+    {/if}
+    <span id="gttop" title="返回顶部"> <i class="fa fa-arrow-up"></i> </span>
+</div>
+</body>
+</html>
+
+
