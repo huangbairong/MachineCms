@@ -1,52 +1,83 @@
-<footer>
-    <div class="container footer-link d-flex">
-        <div class="left d-flex">
-            <div class="public-title">
-                <h3>友情链接</h3>
-                <p>friendly link</p>
-            </div>
-            <ul class="d-flex align-items-center footer-link-wrapper">
-                {ld:link name='link'}
-                <li>
-                    <a href="#" target="{$item.target}">{$item.title}</a>
-                </li>
-                {/ld:link}
-            </ul>
-        </div>
-        <div class="social"></div>
-    </div>
-    <div class="container">
-        <div class="d-flex row">
-            <div class="footer-menu col-md-8  d-none d-lg-block">
-                <ul class="d-flex flex-1">
-                    {ld:nav}
-                    {if $item.child>0}
-                    <li>
-                        <dl>
-                            <dt>{$item.name}</dt>
-                            {ld:sort pid="$item['id']" alias="nav2"}
-                            <dd>
-                                <a href="#"
-                                title="{$nav2.name}">{$nav2.name}</a>
-                            </dd>
-                            {/ld:sort}
-                        </dl>
-                    </li>
-                    {/if}
-                    {/ld:nav}
-                </ul>
-            </div>
-            <div class="footer-contact col-md-4">
-                <p>{$ld.tel}</p>
-                <p>{$ld.address}</p>
-                <p>{$ld.email}</p>
-                <div class="qrcodes d-flex">
-                    {ld:slide name='qrcode'}
-                    <div class="qrcode-img">
-                        <img src="{$item.image}" alt="{$item.title}" />
-                        <p>{$item.title}</p>
+<footer class="modern-footer">
+    <div class="footer-main">
+        <div class="container">
+            <div class="row">
+                <!-- 公司信息 -->
+                <div class="col-lg-4 col-md-6 footer-section">
+                    <div class="footer-brand">
+                        <h3 class="brand-title">{$ld.sitename}</h3>
+                        <p class="brand-slogan">{$ld.seo_description}</p>
                     </div>
-                    {/ld:slide}
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fa fa-phone"></i>
+                            <span>{$ld.tel}</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fa fa-envelope"></i>
+                            <span>{$ld.email}</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fa fa-map-marker"></i>
+                            <span>{$ld.address}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 快速导航 -->
+                <div class="col-lg-2 col-md-6 footer-section d-none d-md-block">
+                    <h4 class="footer-title">快速导航</h4>
+                    <ul class="footer-links">
+                        {ld:nav limit="6"}
+                        <li><a href="{$item.url}">{$item.name}</a></li>
+                        {/ld:nav}
+                    </ul>
+                </div>
+
+                <!-- 产品服务 -->
+                <div class="col-lg-2 col-md-6 footer-section d-none d-md-block">
+                    <h4 class="footer-title">产品服务</h4>
+                    <ul class="footer-links">
+                        {ld:nav}
+                        {if $item.child>0}
+                        {ld:sort pid="$item['id']" alias="nav2" limit="5"}
+                        <li><a href="{$nav2.url}">{$nav2.name}</a></li>
+                        {/ld:sort}
+                        {/if}
+                        {/ld:nav}
+                    </ul>
+                </div>
+
+                <!-- 关注我们 -->
+                <div class="col-lg-4 col-md-6 footer-section">
+                    <h4 class="footer-title">关注我们</h4>
+                    <div class="social-qrcodes">
+                        {ld:slide name='qrcode'}
+                        <div class="qrcode-item">
+                            <img src="{$item.image}" alt="{$item.title}" />
+                            <p>{$item.title}</p>
+                        </div>
+                        {/ld:slide}
+                    </div>
+                    <div class="footer-social-links">
+                        {if $ld.wechat}<a href="#" class="social-link"><i class="fa fa-wechat"></i></a>{/if}
+                        {if $ld.qq}<a href="tencent://message/?uin={$ld.qq}" class="social-link"><i class="fa fa-qq"></i></a>{/if}
+                        <a href="#" class="social-link"><i class="fa fa-weibo"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 友情链接 -->
+    <div class="footer-links-section">
+        <div class="container">
+            <div class="footer-friendly-links">
+                <span class="links-title">友情链接：</span>
+                <div class="links-wrapper">
+                    {ld:link name='link'}
+                    <a href="{$item.url}" target="{$item.target}">{$item.title}</a>
+                    {/ld:link}
                 </div>
             </div>
         </div>

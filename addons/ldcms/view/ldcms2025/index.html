@@ -51,18 +51,19 @@
             <p>{$cate['ename']}</p>
             <div class="info">{$content.content|ld_str_cut=400}</div>
             <div class="count-wrapper d-flex">
-                {foreach $ld.about_count as $key=>$item}
-                <div class="count-item">
-                    <div class="count-text">
-                        <span class="number">{$item.value1}</span>
-                        <span class="unit">{$item.value2}</span>
+                <div class="d-flex">
+                    {foreach $ld.about_count as $key=>$item}
+                    <div class="count-item">
+                        <div class="count-text">
+                            <span class="number">{$item.value1}</span>
+                            <span class="unit">{$item.value2}</span>
+                        </div>
+                        <p>{$item.value3}</p>
                     </div>
-                    <p>{$item.value3}</p>
+                    {/foreach}
                 </div>
-                {/foreach}
+                <a href="{$cate.url}" class="public-more">{:__('View More')} <i class="fa fa-angle-double-right"></i> </a>
             </div>
-
-            <a href="{$cate.url}" class="public-more">{:__('View More')} <i class="fa fa-angle-double-right"></i> </a>
         </div>
         {/ld:content}
     </div>
