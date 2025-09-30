@@ -48,3 +48,10 @@ addons/ldcms/view/ldcms2025/index.html:192
 样式调整：
 在关于我们这个版块帮我优化一个版本，使其大气一些
 addons/ldcms/view/ldcms2025/index.html:41
+
+
+# 页面调整风格
+ - 代码位置 addons/ldcms/view/ldcms2025/list_product.html
+ - 去掉产品价格
+ - 去掉产品筛选
+ - 显示所有分类的展品，用分类名称作为标题
