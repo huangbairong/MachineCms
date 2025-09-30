@@ -13,6 +13,11 @@ abc123456
 网站添加成功！
 
 
+宝塔：
+https://120.26.60.125:8090/login
+
+
+
 头部文件 ：addons/ldcms/view/ldcms2025/nav.html
 样式文件 : public/assets/addons/ldcms/ldcms2025/css/style.css
 头部内容调整：

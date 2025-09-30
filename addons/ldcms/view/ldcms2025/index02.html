@@ -125,14 +125,13 @@
         }
 
         .carousel-caption {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.8));
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
             backdrop-filter: blur(10px);
-            padding: 40px;
+            padding: 10px;
             border-radius: 20px;
             border: 1px solid rgba(255,255,255,0.2);
             box-shadow: 0 8px 32px rgba(0,0,0,0.2);
             z-index: 2;
-            position: relative;
         }
 
         /* 关于我们样式 */
@@ -889,7 +888,7 @@
                     {else /}
                         <img src="{$item.image}" class="d-block w-100" alt="{$item.title}">
                     {/if}
-                    <div class="carousel-caption d-md-block">
+                    <div class="carousel-caption d-block">
                         <h2>{$item.title}</h2>
                         <p>{$item.description}</p>
                         <a href="#" target="{$item.target}" class="btn btn-primary btn-lg">{:__('View More')}</a>
