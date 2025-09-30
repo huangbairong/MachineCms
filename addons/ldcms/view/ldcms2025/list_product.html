@@ -6,7 +6,6 @@
     <img src="{$item.big_image}" alt="{$item.name}" />
     <div class="neibannerdesc">
         <div class="container neibannerdesc-title">
-            <p>{$item.ename}</p>
             <h2>{$item.name}</h2>
         </div>
     </div>
@@ -15,13 +14,20 @@
 </section>
 <!-- neibanner end -->
 
-<section class="page-list product-wrapper">
-    <h2 class="section-title">产品列表 - 第一组</h2>
+<section class="page-list product-wrapper product-section-white">
+    <div class="text-center mb-5">
+        <h2 class="section-title-enhanced">
+            <span class="title-decoration"></span>
+            <span class="title-content">精选产品系列</span>
+            <span class="title-decoration"></span>
+        </h2>
+        <p class="section-subtitle">汇聚创新与品质，每一款产品都经过精心设计与严格筛选</p>
+    </div>
     <div class="container">
         <div class="product-list row">
             {ld:list page='true'}
             <div class="product-item col-lg-3 col-md-6 col-sm-6">
-                <a href="{$item.url}" class="product-item-wrapper wow fadeInUp" data-wow-delay="0.{$i}s">
+                <a href="#" class="product-item-wrapper wow fadeInUp" data-wow-delay="0.{$i}s">
                     <div class="pic">
                         <img class="img-fluid" src="{$item.image}" alt="{$item.title}" />
                     </div>
@@ -41,13 +47,20 @@
         </div>
     </div>
 </section>
-<section class="page-list product-wrapper">
-    <h2 class="section-title">产品列表 - 第二组</h2>
+<section class="page-list product-wrapper product-section-gray">
+    <div class="text-center mb-5">
+        <h2 class="section-title-enhanced">
+            <span class="title-decoration"></span>
+            <span class="title-content">热门推荐</span>
+            <span class="title-decoration"></span>
+        </h2>
+        <p class="section-subtitle">客户喜爱的明星产品，品质与口碑的双重保证</p>
+    </div>
     <div class="container">
         <div class="product-list row">
             {ld:list page='true'}
             <div class="product-item col-lg-3 col-md-6 col-sm-6">
-                <a href="{$item.url}" class="product-item-wrapper wow fadeInUp" data-wow-delay="0.{$i}s">
+                <a href="#" class="product-item-wrapper wow fadeInUp" data-wow-delay="0.{$i}s">
                     <div class="pic">
                         <img class="img-fluid" src="{$item.image}" alt="{$item.title}" />
                     </div>
@@ -68,13 +81,20 @@
 
     </div>
 </section>
-<section class="page-list product-wrapper">
-    <h2 class="section-title">产品列表 - 第三组</h2>
+<section class="page-list product-wrapper product-section-white">
+    <div class="text-center mb-5">
+        <h2 class="section-title-enhanced">
+            <span class="title-decoration"></span>
+            <span class="title-content">最新发布</span>
+            <span class="title-decoration"></span>
+        </h2>
+        <p class="section-subtitle">紧跟时代潮流，为您呈现最新的产品创新与设计</p>
+    </div>
     <div class="container">
         <div class="product-list row">
             {ld:list page='true'}
             <div class="product-item col-lg-3 col-md-6 col-sm-6">
-                <a href="{$item.url}" class="product-item-wrapper wow fadeInUp" data-wow-delay="0.{$i}s">
+                <a href="#" class="product-item-wrapper wow fadeInUp" data-wow-delay="0.{$i}s">
                     <div class="pic">
                         <img class="img-fluid" src="{$item.image}" alt="{$item.title}" />
                     </div>
