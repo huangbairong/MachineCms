@@ -15,31 +15,6 @@ class Index extends Base
             $this->assign('ld', $this->siteConfig);
         }
 
-        return $this->view->fetch('/index02');
-    }
-
-    public function index02()
-    {
-        $index_title=$this->addonConfig['index_title'];
-        if(!empty($index_title)){
-            $index_title=$this->view->display($index_title);
-            $this->siteConfig['sitetitle']=$index_title;
-            $this->assign('ld', $this->siteConfig);
-        }
-
         return $this->view->fetch('/index');
     }
-
-    public function index03()
-    {
-        $index_title=$this->addonConfig['index_title'];
-        if(!empty($index_title)){
-            $index_title=$this->view->display($index_title);
-            $this->siteConfig['sitetitle']=$index_title;
-            $this->assign('ld', $this->siteConfig);
-        }
-
-        return $this->view->fetch('/index03');
-    }
-
 }
