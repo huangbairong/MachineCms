@@ -2399,6 +2399,30 @@ header .search-wrapper .search-close {
     width: 100%
 }
 
+.page-pagination .pager li {
+    padding: 10px;
+    display: inline-block;
+    margin: 0 15px;
+    border: 2px solid var(--primary-color);
+    border-radius: 25px;
+    background-color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.page-pagination .pager li:not(.disabled) {
+    background-color: var(--primary-color);
+}
+
+.page-pagination .pager li:not(.disabled) a{
+    color: white!important;
+}
+
+.page-pagination .pager li.disabled {
+    background-color: #f8f9fa;
+    border-color: #dee2e6;
+    opacity: 0.6;
+}
+
 .page-pagination .pagination {
     display: inline-block;
     padding-left: 0;
