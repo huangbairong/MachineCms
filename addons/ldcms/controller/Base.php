@@ -102,6 +102,7 @@ class Base extends Frontend
         $this->siteConfig = array_merge($this->siteConfig, $this->apiSecret());
         $this->assign('ld', $this->siteConfig);
         $this->assign('topid', $this->topid);
+        $this->assign('time_version', time());
     }
 
     /**
