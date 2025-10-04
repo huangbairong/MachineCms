@@ -55,3 +55,8 @@ addons/ldcms/view/ldcms2025/index.html:41
  - 去掉产品价格
  - 去掉产品筛选
  - 显示所有分类的展品，用分类名称作为标题
+
+
+把导航内容弄成右对齐，白色背景
+ - 样式文件：public/assets/addons/ldcms/ldcms2025/css/style.min.css
+ - 代码文件：addons/ldcms/view/ldcms2025/list_product.html

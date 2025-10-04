@@ -1887,8 +1887,8 @@ header .search-wrapper .search-close {
 }
 
 .neinav {
+    margin-top: 25px;
     width: 100%;
-    background-color: rgba(0, 0, 0, .15);
     min-height: 50px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1896,9 +1896,9 @@ header .search-wrapper .search-close {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end
 }
 
 .neinav .neinav-wrapper li {
@@ -1928,22 +1928,19 @@ header .search-wrapper .search-close {
     color: #fff
 }
 
-.neinav .neiposition i.fa {
-    color: #ccc
-}
 
 .neinav .neiposition i.neiposition-icon {
-    color: #ccc;
+    color: #000;
     margin-right: 5px
 }
 
 .neinav .neiposition a {
     font-size: 14px;
-    color: #ccc
+    color: #000
 }
 
 .neinav .neiposition a:hover {
-    color: #fff
+    color: #333
 }
 
 .page-content {
