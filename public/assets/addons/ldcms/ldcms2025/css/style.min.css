@@ -2587,7 +2587,6 @@ header .search-wrapper .search-close {
 .product-item-wrapper:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    border-color: var(--primary-color)
 }
 
 .product-item .pic img {
@@ -2604,6 +2603,34 @@ header .search-wrapper .search-close {
 
 .product-item-wrapper:hover .public-more i {
     transform: translateX(3px)
+}
+
+/* 移动端响应式 */
+@media (max-width: 991.98px) {
+    .product-filter-sidebar {
+        margin-bottom: 30px
+    }
+    
+    .filter-group .filter-title {
+        font-size: 15px
+    }
+    
+    .filter-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px
+    }
+    
+    .filter-list li {
+        margin-bottom: 0
+    }
+    
+    .filter-list li a {
+        padding: 6px 12px;
+        font-size: 13px;
+        border: 1px solid #ddd;
+        background-color: #fff
+    }
 }
 
 .procontent_1 {
