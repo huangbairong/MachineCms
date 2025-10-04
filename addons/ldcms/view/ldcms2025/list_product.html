@@ -19,53 +19,59 @@
 
 <section class="page-list product-wrapper m-5">
     <div class="container">
-        <div class="product-filter">
-            {ld:filter mid="$category['mid']" title_text="全部"}
-            <div class="filter-row d-flex">
-                <div class="filter-title">
-                    {:__($item.title)}
-                </div>
-                <div class="filter-values">
-                    <ul class="d-flex flex-wrap">
-                        {volist name="$item.content" id="li"}
-                        <li class="{$li.active?'active':''}">
-                            <a href="#">{:__($li.title)}</a>
-                        </li>
-                        {/volist}
-                    </ul>
-                </div>
-            </div>
-            {/ld:filter}
-        </div>
-
-        <div class="product-list row">
-            {ld:list page='true' limit='8'}
-            <div class="product-item col-lg-3 col-md-6 col-sm-6">
-                <a href="#" class="product-item-wrapper wow fadeInUp" data-wow-delay="0.{$i}s">
-                    <div class="pic">
-                        <img class="img-fluid" src="{$item.image}" alt="{$item.title}" />
-                    </div>
-                    <div class="content-wrapper text-center px-3 py-3">
-                        <h3 class="product-item-title text-ellipsis">{$item.title}</h3>
-                        <p class="product-item-info text-ellipsis-2">{$item.description}</p>
-                        <div class="product-item-bottom d-flex justify-content-between">
-                            <div class="price">
-                                <!--<span class="price-unit">￥</span>
-                                <strong>{$item.price}</strong>-->
-                            </div>
-                            <span class="public-more">
-                                MORE
-                                <i class="fa fa-angle-double-right"></i>
-                            </span>
+        <div class="row">
+            <!-- 左侧筛选区域 -->
+            <div class="col-lg-3 col-md-4">
+                <div class="product-filter-sidebar">
+                    {ld:filter mid="$category['mid']" title_text="全部"}
+                    <div class="filter-group">
+                        <h5 class="filter-title">{:__($item.title)}</h5>
+                        <div class="filter-values">
+                            <ul class="filter-list">
+                                {volist name="$item.content" id="li"}
+                                <li class="{$li.active?'active':''}">
+                                    <a href="#">{:__($li.title)}</a>
+                                </li>
+                                {/volist}
+                            </ul>
                         </div>
                     </div>
-                </a>
+                    {/ld:filter}
+                </div>
             </div>
-            {/ld:list}
-        </div>
 
-        <div class="page-pagination">
-            {$pages}
+            <!-- 右侧产品列表区域 -->
+            <div class="col-lg-9 col-md-8">
+                <div class="product-list row">
+                    {ld:list page='true' limit='8'}
+                    <div class="product-item col-lg-4 col-md-6 col-sm-6">
+                        <a href="#" class="product-item-wrapper wow fadeInUp" data-wow-delay="0.{$i}s">
+                            <div class="pic">
+                                <img class="img-fluid" src="{$item.image}" alt="{$item.title}" />
+                            </div>
+                            <div class="content-wrapper text-center px-3 py-3">
+                                <h3 class="product-item-title text-ellipsis">{$item.title}</h3>
+                                <p class="product-item-info text-ellipsis-2">{$item.description}</p>
+                                <div class="product-item-bottom d-flex justify-content-between">
+                                    <div class="price">
+                                        <!--<span class="price-unit">￥</span>
+                                        <strong>{$item.price}</strong>-->
+                                    </div>
+                                    <span class="public-more">
+                                        MORE
+                                        <i class="fa fa-angle-double-right"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {/ld:list}
+                </div>
+
+                <div class="page-pagination">
+                    {$pages}
+                </div>
+            </div>
         </div>
     </div>
 </section>

@@ -2508,6 +2508,104 @@ header .search-wrapper .search-close {
     margin-top: 60px
 }
 
+/* 左侧筛选侧边栏样式 */
+.product-filter-sidebar {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #e9ecef
+}
+
+.filter-group {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e9ecef
+}
+
+.filter-group:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none
+}
+
+.filter-group .filter-title {
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    border-bottom: 2px solid var(--primary-color);
+    border-left: 4px solid var(--primary-color);
+    position: relative
+}
+
+.filter-list {
+    list-style: none;
+    padding: 0;
+    margin: 0
+}
+
+.filter-list li {
+    margin-bottom: 8px
+}
+
+.filter-list li a {
+    display: block;
+    padding: 8px 12px;
+    color: #666;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-size: 14px
+}
+
+.filter-list li a:hover {
+    background-color: rgba(249, 75, 75, 0.1);
+    color: var(--primary-color);
+    transform: translateX(5px)
+}
+
+.filter-list li.active a {
+    background-color: var(--primary-color);
+    color: #fff;
+    font-weight: 500
+}
+
+/* 产品列表区域样式优化 */
+.product-item-wrapper {
+    display: block;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border: 1px solid #f0f0f0
+}
+
+.product-item-wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    border-color: var(--primary-color)
+}
+
+.product-item .pic img {
+    transition: transform 0.3s ease
+}
+
+.product-item-wrapper:hover .pic img {
+    transform: scale(1.05)
+}
+
+.public-more i {
+    transition: transform 0.3s ease
+}
+
+.product-item-wrapper:hover .public-more i {
+    transform: translateX(3px)
+}
+
 .procontent_1 {
     width: 100%;
     background-color: #f9fafc;
