@@ -176,8 +176,6 @@ class Bootstrap extends Paginator
             } else {
                 return sprintf(
                     '<ul class="pagination"> %s %s %s %s %s </ul>',
-                    //显示数量页码信息
-                    $this->totalshow(),
                     //第一页
                     $this->showfirstpage(__('Home Page')),
                     //上一页
@@ -192,6 +190,8 @@ class Bootstrap extends Paginator
 //                    $this->getNextButton(),
                     //最后一页
                     $this->showlastpage(__('Last Page')),
+                    //显示数量页码信息
+                    $this->totalshow(),
                     //最后再加个参数 %s 可以显示跳转到哪页
                     $this->gopage()
                 );

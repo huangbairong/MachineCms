@@ -26,7 +26,7 @@ return [
     'remark' => '内容',
     'Home Page' => '首页',
     'Last Page' => '尾页',
-    'Page %s of %s' => '第%s页/共%s页',
+    'Page %s of %s' => '%s/%s',
     'Previous Page' => '上一页',
     'Next Page' => '下一页',
     'Page Number' => '页码',
