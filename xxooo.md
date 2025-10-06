@@ -64,3 +64,12 @@ addons/ldcms/view/ldcms2025/index.html:41
 public/assets/addons/ldcms/ldcms2025/css/style.min.css，帮我优化分页的相关样式，我想要圆形显示
 
 
+
+在当前页面里帮我增加公司概况
+、编码代码位置:addons/ldcms/view/ldcms2025/detail_about.html:22
+、参考https://www.f008.com/list-2-1.html 里的（视点概况）这个版块
+、样式写在当前页面即可
+
+
+
+
