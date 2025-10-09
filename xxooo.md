@@ -78,3 +78,18 @@ public/assets/addons/ldcms/ldcms2025/css/style.min.css，帮我优化分页的�
 、该版块背景色为主题设
 、按照你的想法帮我调整该版块的UI内容,（仅仅调整该版块UI即可）
 、 代码位置：addons/ldcms/view/ldcms2025/detail_about.html:107
+
+
+
+筛选内容调整
+、更换筛选的数据内容，这里存在两级（
+    `
+    {ld:sort cid="$topid"} {if $item.child > 0} {ld:sort pid="$topid" alias="item2"}
+    <li class="{if $category['id']==$item2['id']} active {/if}">
+    <a href="{$item2.url}" title="{$item2.name}">{$item2.name}</a>
+    </li>
+    {/ld:sort} {else /}
+    `
+）
+、更换位置addons/ldcms/view/ldcms2025/list_product.html:23
+

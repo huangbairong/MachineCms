@@ -23,20 +23,22 @@
             <!-- 左侧筛选区域 -->
             <div class="col-lg-3 col-md-4">
                 <div class="product-filter-sidebar">
-                    {ld:filter mid="$category['mid']" title_text="全部"}
+                    {ld:sort pid="$topid" alias="item2"}
                     <div class="filter-group">
-                        <h5 class="filter-title">{:__($item.title)}</h5>
+                        <h5 class="filter-title">
+                            <a href="{$item2.url}" title="{$item2.name}">{$item2.name}</a>
+                        </h5>
+                        {ld:sort pid="$item2['id']" alias="item3"}
                         <div class="filter-values">
                             <ul class="filter-list">
-                                {volist name="$item.content" id="li"}
-                                <li class="{$li.active?'active':''}">
-                                    <a href="#">{:__($li.title)}</a>
+                                <li class="{if $category['id']==$item3['id']} active {/if}">
+                                    <a href="{$item3.url}" title="{$item3.name}">{$item3.name}</a>
                                 </li>
-                                {/volist}
                             </ul>
                         </div>
+                        {/ld:sort}
                     </div>
-                    {/ld:filter}
+                    {/ld:sort}
                 </div>
             </div>
 
