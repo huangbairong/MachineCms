@@ -3293,8 +3293,10 @@ header .search-wrapper .search-close {
 }
 
 #backTop span small {
-    width: 180px;
-    height: 180px;
+    /*width: 180px;*/
+    /*height: 180px;*/
+    padding: 10px;
+    border-radius: 10px;
     position: absolute;
     left: -220px;
     top: 0;

@@ -96,14 +96,19 @@
 </div>
 
 <div id="backTop">
-	{if $ld.phone}
-  	<span class="ft-tel"><i class="fa fa-phone"></i><small class="telTop"><a href="#" style="color: #333;">{$ld.phone}</a></small></span>
-	{/if}
-	{if $ld.wechat}
-  	<span class="ft-wx"><i class="fa fa-wechat"></i><small class="weixin"><b class="fa fa-caret-right"></b><img src="{$ld.wechat}" alt="{:__('ScanQRCode')}"></small></span>
-	{/if}
-	{if $ld.qq}
-	<span class="ft-qq"><a href="#" target="_blank" class="socialLink s-qq" rel="nofollow"><i class="fa fa-qq"></i></a></span>
-	{/if}
+    {if $ld.wechat_qr}
+    <span class="ft-wx"><i class="fa fa-wechat"></i><small class="weixin"><b class="fa fa-caret-right"></b><img src="{$ld.wechat_qr}" alt="{:__('ScanQRCode')}"></small></span>
+    {/if}
+    {if $ld.whatsapp_qr}
+    <a target="_blank" href="{$ld.whatapp_link}">
+        <span class="ft-wx"><i class="fa fa-whatsapp"></i><small class="weixin">
+            <b class="fa fa-caret-right"></b>
+            <img src="{$ld.whatsapp_qr}" alt="{:__('ScanQRCode')}">
+            <span href="{$ld.whatapp_link}" style="height:10px;text-align:center;width:100%;font-size:12px;display: block;margin: auto;color: var(--primary-color)" target="_blank">{$ld.whatapp_link}</span>
+
+        </small>
+        </span>
+    </a>
+    {/if}
 	<span id="gttop" title="返回顶部"> <i class="fa fa-arrow-up"></i> </span>
 </div>
