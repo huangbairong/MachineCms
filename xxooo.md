@@ -73,3 +73,8 @@ public/assets/addons/ldcms/ldcms2025/css/style.min.css，帮我优化分页的�
 
 
 
+
+公司相关数据UI调整（class=dataBox版块）：
+、该版块背景色为主题设
+、按照你的想法帮我调整该版块的UI内容,（仅仅调整该版块UI即可）
+、 代码位置：addons/ldcms/view/ldcms2025/detail_about.html:107

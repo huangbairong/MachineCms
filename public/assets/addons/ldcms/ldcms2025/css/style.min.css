@@ -34,6 +34,7 @@ blockquote:before, blockquote:after {
 
 :root {
     --primary-color: #f94b4b;
+    --primary-second-color: #fa7575;
     --swiper-theme-color: var(--primary-color)
 }
 
