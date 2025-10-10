@@ -21,7 +21,7 @@
 
 
 <div class="container">
-    <div class="product-content-info row">
+    <div class="product-content-info row" style="justify-content: center">
         <div class="procontent1_l col-12 col-sm-12 col-lg-6">
             <div class="swiper-container gallery-top">
                 <div class="swiper-wrapper">
@@ -68,50 +68,24 @@
                 });
             </script>
         </div>
-        <div class="procontent1_r col-12 col-sm-12 col-lg-6">
-            <div class="procont_ltop">
-                <h2>{$content.title}</h2>
-                <p>{$content.subtitle}</p>
-            </div>
-            <div class="procont_lbot">
-                <p>{$content.seo_description}</p>
-            </div>
-            <!--<div class="procontent_zx d-flex">
-                {if $content.price}
-                <a class="d-flex align-items-center justify-content-center product-info-price" href="javascript:;">
-                    <span>￥</span>
-                    <span class="price-text">{$content.price}</span>
-                </a>
-                {/if}
-                <a class="d-flex align-items-center justify-content-center" href="{$ld.qq}" target="_blank">
-                    <i class="fa fa-comments"> </i>
-                    <span>在线咨询</span>
-                </a>
-            </div>-->
-        </div>
     </div>
 </div>
 
 <section class="page-content">
     <div class="container">
         <div class="page-content-card card">
-            <div class="tabs">
-                <div class="tabs-item active">产品详情</div>
-                <div class="tabs-item">产品参数</div>
+            <div class="tabs" style="padding: 0">
+                <h5 style="
+                font-size: 16px;
+                font-weight: 600;
+                padding: 15px;
+                padding-left: 20px!important;
+                margin-left: 10px;
+                border-left: 4px solid var(--primary-color);">产品描述</h5>
             </div>
-            <div class="card-body">{$content.content}</div>
+            <div class="card-body rich-text-content">{$content.content}</div>
             <div class="card-body" style="display: none;">{$content.cpcs}</div>
         </div>
     </div>
 </section>
-<script>
-    $(function() {
-        $(".tabs-item").click(function() {
-            $(".tabs-item").removeClass("active");
-            $(this).addClass("active");
-            $(".card-body").hide();
-            $(".card-body").eq($(this).index()).show();
-        });
-    });
-</script>
 {/block}
