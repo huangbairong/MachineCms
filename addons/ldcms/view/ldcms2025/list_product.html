@@ -77,4 +77,107 @@
         </div>
     </div>
 </section>
+
+<style>
+.product-filter-sidebar {
+    transition: all 0.3s ease;
+}
+
+.product-filter-sidebar.sticky {
+    position: fixed;
+    top: 20px;
+    z-index: 100;
+}
+
+.filter-sidebar-placeholder {
+    display: none;
+}
+
+.filter-sidebar-placeholder.active {
+    display: block;
+}
+</style>
+
+<script>
+$(document).ready(function() {
+    var $sidebar = $('.product-filter-sidebar');
+    var $sidebarParent = $sidebar.parent();
+    var $placeholder = $('<div class="filter-sidebar-placeholder"></div>');
+
+    // 在侧边栏后面插入占位符
+    $sidebar.after($placeholder);
+
+    // 获取侧边栏的初始位置和尺寸信息
+    function getSidebarInfo() {
+        return {
+            top: $placeholder.length ? $placeholder.offset().top : $sidebar.offset().top,
+            width: $sidebarParent.width(),
+            height: $sidebar.outerHeight()
+        };
+    }
+
+    var sidebarInfo = getSidebarInfo();
+    var headerHeight = 100; // 导航栏高度，根据实际情况调整
+
+    // 设置占位符的高度
+    $placeholder.height(sidebarInfo.height);
+
+    function updateSidebarPosition() {
+        var scrollTop = $(window).scrollTop();
+        var windowHeight = $(window).height();
+        var footerTop = $('footer').offset().top;
+
+        // 重新获取侧边栏信息（高度可能会变化）
+        sidebarInfo = getSidebarInfo();
+        $placeholder.height(sidebarInfo.height);
+
+        var sidebarBottom = scrollTop + sidebarInfo.height + headerHeight;
+
+        if (scrollTop + headerHeight >= sidebarInfo.top) {
+            // 需要固定侧边栏
+            $placeholder.addClass('active');
+
+            // 检查是否到达页面底部
+            if (sidebarBottom >= footerTop) {
+                // 到达底部，停止固定（使用 absolute 定位）
+                $sidebar.removeClass('sticky');
+                $sidebar.css({
+                    'position': 'absolute',
+                    'top': (footerTop - sidebarInfo.top - sidebarInfo.height) + 'px',
+                    'width': sidebarInfo.width + 'px'
+                });
+            } else {
+                // 固定侧边栏
+                $sidebar.addClass('sticky');
+                $sidebar.css({
+                    'position': 'fixed',
+                    'width': sidebarInfo.width + 'px',
+                    'top': headerHeight + 'px'
+                });
+            }
+        } else {
+            // 恢复原始位置
+            $sidebar.removeClass('sticky');
+            $sidebar.css({
+                'position': '',
+                'top': '',
+                'width': ''
+            });
+            $placeholder.removeClass('active');
+        }
+    }
+
+    // 监听滚动事件
+    $(window).scroll(updateSidebarPosition);
+
+    // 窗口大小改变时重新计算
+    $(window).resize(function() {
+        sidebarInfo = getSidebarInfo();
+        updateSidebarPosition();
+    });
+
+    // 初始化时执行一次
+    updateSidebarPosition();
+});
+</script>
 {/block}
