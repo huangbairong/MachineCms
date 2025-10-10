@@ -1123,9 +1123,11 @@ header .search-wrapper .search-close {
     color: #333
 }
 
-.case-wrapper .case-next, .case-wrapper .case-prev {
-    display: none
+.case-wrapper .case-next {
+    left: auto;
+    right: -50px
 }
+
 
 .case-wrapper .case-swiper {
     padding: 0 12px 30px
