@@ -93,3 +93,9 @@ public/assets/addons/ldcms/ldcms2025/css/style.min.css，帮我优化分页的�
 ）
 、更换位置addons/ldcms/view/ldcms2025/list_product.html:23
 
+
+筛选UI方式调整：
+、代码位置：addons/ldcms/view/ldcms2025/list_product.html:23
+、判断是否选中一级，如果选中一级就展开二级内容
+、
+

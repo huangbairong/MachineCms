@@ -2529,16 +2529,34 @@ header .search-wrapper .search-close {
 }
 
 .filter-group .filter-title {
-    color: #333;
     font-size: 16px;
     font-weight: 600;
-    margin-bottom: 15px;
     padding-bottom: 10px;
     padding-left: 15px;
-    border-bottom: 2px solid var(--primary-color);
     border-left: 4px solid var(--primary-color);
     position: relative
 }
+.filter-group.active .filter-title{
+    margin-bottom: 15px;
+}
+
+.filter-group .filter-title a{
+    color: #333;
+}
+
+.filter-group.active .filter-title a{
+    color: var(--primary-color);
+}
+
+.filter-group .filter-values{
+    display: none;
+}
+
+.filter-group.active .filter-values{
+    display: block;
+}
+
+
 
 .filter-list {
     list-style: none;

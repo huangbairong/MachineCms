@@ -24,7 +24,7 @@
             <div class="col-lg-3 col-md-4">
                 <div class="product-filter-sidebar">
                     {ld:sort pid="$topid" alias="item2"}
-                    <div class="filter-group">
+                    <div class="filter-group {if $category['id']==$item2['id'] || $category['pid']==$item2['id']} active {/if}">
                         <h5 class="filter-title">
                             <a href="{$item2.url}" title="{$item2.name}">{$item2.name}</a>
                         </h5>
