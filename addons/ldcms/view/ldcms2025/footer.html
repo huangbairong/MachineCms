@@ -1,3 +1,22 @@
+
+<!-- 留言表单 s -->
+<section id="form-contact-wrapper" class="contact-wrapper wow fadeInUp">
+    <div class="container">
+        <div class="contact-content">
+            <div class="public-title">
+                <h3>提供优质服务</h3>
+                <p>随时我们联系</p>
+            </div>
+            <form class="d-flex contact-form" action="{:addon_url('ldcms/diyform/message')}" method="post">
+                <input type="text" name="uname" placeholder="姓名" />
+                <input type="text" name="mobile" placeholder="电话" />
+                <input class="remark" type="text" name="remark" placeholder="留言" />
+                {:token()}
+                <button disabled type="submit">提交</button>
+            </form>
+        </div>
+    </div>
+</section>
 <footer class="modern-footer">
     <div class="footer-main">
         <div class="container">

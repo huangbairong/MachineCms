@@ -99,3 +99,9 @@ public/assets/addons/ldcms/ldcms2025/css/style.min.css，帮我优化分页的�
 、判断是否选中一级，如果选中一级就展开二级内容
 、
 
+
+
+产品详情页调整
+、代码位置:addons/ldcms/view/ldcms2025/detail_product.html
+、帮我重新调整页面，主要以介绍产品为主，而不是售卖产品为主
+、增加联系我们按钮，点击后跳转到锚点 （#form-contact-wrapper）
