@@ -21,19 +21,20 @@
 
 
 <div class="container">
-    <div class="product-content-info row" style="justify-content: center">
-        <div class="procontent1_l col-12 col-sm-12 col-lg-6">
-            <div class="swiper-container gallery-top">
+    <div class="product-content-info row" style="justify-content: center;margin-top: 10px">
+        <div class="procontent1_l col-12">
+            <div class="swiper-container gallery-top" {if count(explode(',',$content.pics)) == 1}style="height: 100%"{/if}>
                 <div class="swiper-wrapper">
                     {foreach :explode(',',$content.pics) as $pic}
-                    <div class="swiper-slide">
+                    <div class="swiper-slide" style="border: none">
                         <img src="{$pic|cdnurl}" alt="{$content.title}" />
                     </div>
                     {/foreach}
                 </div>
             </div>
+            {if count(explode(',',$content.pics)) > 1}
             <div class="swiper-container gallery-thumbs">
-                <div class="swiper-wrapper">
+                <div class="swiper-wrapper" style="justify-content: center">
                     {foreach :explode(',',$content.pics) as $pic}
                     <div class="swiper-slide">
                         <img src="{$pic|cdnurl}" alt="{$content.title}" />
@@ -41,7 +42,7 @@
                     {/foreach}
                 </div>
             </div>
-
+            {/if}
             <script>
                 var galleryThumbs = new Swiper(".gallery-thumbs", {
                     spaceBetween: 10,
