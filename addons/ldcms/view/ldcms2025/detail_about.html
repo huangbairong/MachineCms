@@ -17,93 +17,25 @@
 {include file="neinav" /}
 <!-- 内页导航 end -->
 
-<!--公司概况-->
-<section class="cultBox">
-    <div class="container" >
-        <div class="con">
-            <h2 class="title font40">志钢概况</h2>
-            <div class="list font16">
-                <ul>
-                    <li>
-                        <div class="name font20">
-                            <i class="pic">
-                                <img src="__CDN__/assets/img/c_1.png" alt="志钢简介">
-                            </i>
-                            <span>志钢简介</span>
-                        </div>
-                        <div class="intro">
-                            杭州志钢刃具制造厂（简称“杭州志钢”）成立于1998年，是区内领先的创新性IT解决方案服务商，为企业提供一体化产品技术解决方案，致力于通过商业模式设计与软件服务助力企业开启创新的互联网转型和信息化作业。志钢网络始终以客户为中心，结合技术的可能性和行业最佳实践，为全行业企业提供定制化数字解决方案。
-                        </div>
-                    </li>
-                    <li>
-                        <div class="name font20">
-                            <i class="pic">
-                                <img src="__CDN__/assets/img/c_3.png" alt="技术研发领先">
-                            </i>
-                            <span>技术研发领先</span>
-                        </div>
-                        <div class="intro">
-                            从企业角度及项目实际需要出发做合理技术选型和架构。
-                        </div>
-                    </li>
-                    <li>
-                        <div class="name font20">
-                            <i class="pic">
-                                <img src="__CDN__/assets/img/c_2.png" alt="地址区域">
-                            </i>
-                            <span>地址区域</span>
-                        </div>
-                        <div class="intro">广西南宁市兴宁区明秀东路127号</div>
-                    </li>
-                    <li>
-                        <div class="name font20">
-                            <i class="pic">
-                                <img src="__CDN__/assets/img/c_4.png" alt="交付率远超于行业水平">
-                            </i>
-                            <span>交付率远超于行业水平</span>
-                        </div>
-                        <div class="intro">
-                            项目交付率达97.7%，远超于行业平均标准。
-                        </div>
-                    </li>
-                    <li>
-                        <div class="name font20">
-                            <i class="pic">
-                                <img src="__CDN__/assets/img/c_5.png" alt="产品思维驱动服务">
-                            </i>
-                            <span>产品思维驱动服务</span>
-                        </div>
-                        <div class="intro">
-                            切实考虑用户的需求及商业价值，以给客户带来价值作为第一要务。
-                        </div>
-                    </li>
-                    <li>
-                        <div class="name font20">
-                            <i class="pic">
-                                <img src="__CDN__/assets/img/c_6.png" alt="丰富的项目实践经验">
-                            </i>
-                            <span>丰富的项目实践经验</span>
-                        </div>
-                        <div class="intro">
-                            具备跨行业的项目实践经验，沉淀多维度的方法论。
-                        </div>
-                    </li>
-                    <li>
-                        <div class="name font20">
-                            <i class="pic">
-                                <img src="__CDN__/assets/img/c_7.png" alt="口碑至上">
-                            </i>
-                            <span>口碑至上</span>
-                        </div>
-                        <div class="intro">
-                            七成客户来自于老客户主动推荐，超60%客户项目持续迭代。
-                        </div>
-                    </li>
-
-                </ul>
-            </div>
+<section class="about-wrapper d-lg-flex">
+    <div class="col-lg-6 col-md-12 col-sm-12">
+        <div class="left-img wow slideInLeft">
+            <img src="{$content.image}" alt="{$content.title}" />
         </div>
     </div>
+    <div class="about-right col-lg-6 col-md-12 col-sm-12">
+        <div class="about-right-content wow slideInRight">
+            <h2>{$content.title}</h2>
+            {if $content.subtitle}
+            <p>{$content.subtitle}</p>
+            {/if}
+            <div class="info">{$content.content}</div>
+        </div>
+    </div>
+</section>
+
+<!--公司概况-->
+<section class="cultBox">
     <div class="dataBox">
         <div class="con font16">
 		<span class="item">
@@ -212,9 +144,9 @@
         }
     }
     @media (max-width: 1260px){
-    .font16 {
-        font-size: 14px;
-    }
+        .font16 {
+            font-size: 14px;
+        }
     }
 
     /* dataBox 样式 */
@@ -225,7 +157,7 @@
         position: relative;
         overflow: hidden;
     }
-    
+
     .cultBox .dataBox::before {
         content: '';
         position: absolute;
@@ -237,7 +169,7 @@
         border-radius: 50%;
         transform: rotate(45deg);
     }
-    
+
     .cultBox .dataBox::after {
         content: '';
         position: absolute;
@@ -248,7 +180,7 @@
         background: rgba(255, 255, 255, 0.08);
         border-radius: 50%;
     }
-    
+
     .cultBox .dataBox .con {
         display: flex;
         justify-content: space-around;
@@ -258,7 +190,7 @@
         position: relative;
         z-index: 2;
     }
-    
+
     .cultBox .dataBox .item {
         text-align: center;
         color: white;
@@ -268,7 +200,7 @@
         min-width: 120px;
         animation: fadeInUp 0.8s ease-out;
     }
-    
+
     .cultBox .dataBox .item b {
         font-weight: 700;
         margin-bottom: 0.5rem;
@@ -279,7 +211,7 @@
         background-clip: text;
         font-size: 2.1rem;
     }
-    
+
     .cultBox .dataBox .item i {
         font-style: normal;
         font-size: 1.1rem;
@@ -287,14 +219,14 @@
         font-weight: 500;
         letter-spacing: 0.5px;
     }
-    
+
     .cultBox .dataBox .line {
         width: 2px;
         height: 60px;
         background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.6), transparent);
         display: block;
     }
-    
+
     @keyframes fadeInUp {
         from {
             opacity: 0;
@@ -305,56 +237,48 @@
             transform: translateY(0);
         }
     }
-    
+
     /* 响应式设计 */
     @media (max-width: 768px) {
         .cultBox .dataBox {
             padding: 3rem 1rem;
         }
-        
+
         .cultBox .dataBox .con {
             flex-direction: column;
             gap: 2rem;
         }
-        
+
         .cultBox .dataBox .line {
             width: 60px;
             height: 2px;
             background: linear-gradient(to right, transparent, rgba(255,255,255,0.6), transparent);
         }
-        
+
         .cultBox .dataBox .item {
             min-width: auto;
         }
-        
+
         .cultBox .dataBox .item b {
             font-size: 2.5rem;
         }
-        
+
         .cultBox .dataBox .item i {
             font-size: 1rem;
         }
     }
-    
+
     @media (max-width: 1024px) {
         .cultBox .dataBox .con {
             flex-wrap: wrap;
             gap: 1.5rem;
         }
-        
+
         .cultBox .dataBox .line {
             display: none;
         }
     }
 </style>
 <!--公司概况 end-->
-
-<section class="page-content">
-    <div class="container">
-        <div class="page-content-card card">
-            <div class="card-body">{$content.content}</div>
-        </div>
-    </div>
-</section>
 
 {/block}
