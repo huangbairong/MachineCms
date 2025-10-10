@@ -21,25 +21,22 @@
     <div class="footer-main">
         <div class="container">
             <div class="row">
-                <!-- 公司信息 -->
+                <!-- 关注我们 -->
                 <div class="col-lg-4 col-md-6 footer-section">
-                    <div class="footer-brand" style="display: none">
-                        <h3 class="brand-title">{$ld.sitename}</h3>
-                        <p class="brand-slogan">{$ld.seo_description}</p>
+                    <h4 class="footer-title">关注我们</h4>
+                    <div class="social-qrcodes">
+                        <div class="qrcode-item">
+                            <img src="{$ld.wechat_qr}" alt="微信二维码" />
+                            <p>微信二维码</p>
+                        </div>
+                        <div class="qrcode-item">
+                            <img src="{$ld.whatsapp_qr}" alt="whatapp二维码" />
+                            <p>whatapp二维码</p>
+                        </div>
                     </div>
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <i class="fa fa-phone"></i>
-                            <span>{$ld.tel}</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fa fa-envelope"></i>
-                            <span>{$ld.email}</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fa fa-map-marker"></i>
-                            <span>{$ld.address}</span>
-                        </div>
+                    <div class="footer-social-links">
+                        <a href="https://www.baidu.com" class="social-link"><i class="fa fa-facebook"></i></a>
+                        <a href="https://www.baidu.com" class="social-link"><i class="fa fa-youtube"></i></a>
                     </div>
                 </div>
 
@@ -57,31 +54,32 @@
                 <div class="col-lg-2 col-md-6 footer-section d-none d-md-block">
                     <h4 class="footer-title">产品服务</h4>
                     <ul class="footer-links">
-                        {ld:nav}
-                        {if $item.child>0}
-                        {ld:sort pid="$item['id']" alias="nav2" limit="5"}
-                        <li><a href="{$nav2.url}">{$nav2.name}</a></li>
+                        {ld:sort pid="144" alias="item"}
+                        <li><a href="{$item.url}">{$item.name}</a></li>
                         {/ld:sort}
-                        {/if}
-                        {/ld:nav}
                     </ul>
                 </div>
 
-                <!-- 关注我们 -->
+                <!-- 联系信息 -->
                 <div class="col-lg-4 col-md-6 footer-section">
-                    <h4 class="footer-title">关注我们</h4>
-                    <div class="social-qrcodes">
-                        {ld:slide name='qrcode'}
-                        <div class="qrcode-item">
-                            <img src="{$item.image}" alt="{$item.title}" />
-                            <p>{$item.title}</p>
-                        </div>
-                        {/ld:slide}
+                    <h4 class="footer-title">联系我们</h4>
+                    <div class="footer-brand" style="display: none">
+                        <h3 class="brand-title">{$ld.sitename}</h3>
+                        <p class="brand-slogan">{$ld.seo_description}</p>
                     </div>
-                    <div class="footer-social-links">
-                        {if $ld.wechat}<a href="#" class="social-link"><i class="fa fa-wechat"></i></a>{/if}
-                        {if $ld.qq}<a href="tencent://message/?uin={$ld.qq}" class="social-link"><i class="fa fa-qq"></i></a>{/if}
-                        <a href="#" class="social-link"><i class="fa fa-weibo"></i></a>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fa fa-phone"></i>
+                            <span>{$ld.tel}</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fa fa-envelope"></i>
+                            <span>{$ld.email}</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fa fa-map-marker"></i>
+                            <span>{$ld.address}</span>
+                        </div>
                     </div>
                 </div>
             </div>
