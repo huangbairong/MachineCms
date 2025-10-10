@@ -910,10 +910,10 @@ header .search-wrapper .search-close {
     -ms-flex-pack: center;
     justify-content: center;
     position: relative;
-    margin-left: -40px;
+    margin-left: -20px;
     z-index: 2;
     min-height: 650px;
-    width: calc(50% + 40px);
+    width: calc(50% + 20px);
 }
 
 .about-wrapper .about-right .count-wrapper {

@@ -17,9 +17,9 @@
 {include file="neinav" /}
 <!-- 内页导航 end -->
 
-<section class="about-wrapper d-lg-flex">
-    <div class="col-lg-6 col-md-12 col-sm-12">
-        <div class="left-img wow slideInLeft">
+<section class="about-wrapper d-lg-flex" style="margin-top: 20px; align-items: center;">
+    <div class="col-lg-6 col-md-12 col-sm-12" style="display: flex; align-items: center; z-index: 5">
+        <div class="left-img wow slideInLeft" style="width: 100%;">
             <img src="{$content.image}" alt="{$content.title}" />
         </div>
     </div>
@@ -29,7 +29,7 @@
             {if $content.subtitle}
             <p>{$content.subtitle}</p>
             {/if}
-            <div class="info">{$content.content}</div>
+            <div class="info" style="max-height: none; overflow: visible; -webkit-line-clamp: unset; display: block;">{$content.content}</div>
         </div>
     </div>
 </section>
