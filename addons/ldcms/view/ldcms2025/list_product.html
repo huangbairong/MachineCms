@@ -107,33 +107,24 @@ $(document).ready(function() {
     // 在侧边栏后面插入占位符
     $sidebar.after($placeholder);
 
-    // 获取侧边栏的初始位置和尺寸信息
-    function getSidebarInfo() {
-        return {
-            top: $placeholder.length ? $placeholder.offset().top : $sidebar.offset().top,
-            width: $sidebarParent.width(),
-            height: $sidebar.outerHeight()
-        };
-    }
-
-    var sidebarInfo = getSidebarInfo();
+    // 保存侧边栏的原始位置（只在初始化时获取一次）
+    var originalTop = $sidebar.offset().top;
     var headerHeight = 100; // 导航栏高度，根据实际情况调整
 
     // 设置占位符的高度
-    $placeholder.height(sidebarInfo.height);
+    $placeholder.height($sidebar.outerHeight());
 
     function updateSidebarPosition() {
         var scrollTop = $(window).scrollTop();
-        var windowHeight = $(window).height();
         var footerTop = $('footer').offset().top;
+        var sidebarWidth = $sidebarParent.width();
+        var sidebarHeight = $sidebar.outerHeight();
+        var sidebarBottom = scrollTop + sidebarHeight + headerHeight;
 
-        // 重新获取侧边栏信息（高度可能会变化）
-        sidebarInfo = getSidebarInfo();
-        $placeholder.height(sidebarInfo.height);
+        // 更新占位符高度
+        $placeholder.height(sidebarHeight);
 
-        var sidebarBottom = scrollTop + sidebarInfo.height + headerHeight;
-
-        if (scrollTop + headerHeight >= sidebarInfo.top) {
+        if (scrollTop + headerHeight >= originalTop) {
             // 需要固定侧边栏
             $placeholder.addClass('active');
 
@@ -143,15 +134,15 @@ $(document).ready(function() {
                 $sidebar.removeClass('sticky');
                 $sidebar.css({
                     'position': 'absolute',
-                    'top': (footerTop - sidebarInfo.top - sidebarInfo.height) + 'px',
-                    'width': sidebarInfo.width + 'px'
+                    'top': (footerTop - originalTop - sidebarHeight) + 'px',
+                    'width': sidebarWidth + 'px'
                 });
             } else {
                 // 固定侧边栏
                 $sidebar.addClass('sticky');
                 $sidebar.css({
                     'position': 'fixed',
-                    'width': sidebarInfo.width + 'px',
+                    'width': sidebarWidth + 'px',
                     'top': headerHeight + 'px'
                 });
             }
@@ -172,7 +163,10 @@ $(document).ready(function() {
 
     // 窗口大小改变时重新计算
     $(window).resize(function() {
-        sidebarInfo = getSidebarInfo();
+        // 窗口大小改变时，需要重新获取原始位置
+        if (!$sidebar.hasClass('sticky') && $sidebar.css('position') !== 'absolute') {
+            originalTop = $sidebar.offset().top;
+        }
         updateSidebarPosition();
     });
 
