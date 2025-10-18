@@ -19,71 +19,9 @@
 {include file="neinav" /}
 <!-- 内页导航 end -->
 
-
-<div class="container">
-    <div class="product-content-info row" style="justify-content: center;margin-top: 10px">
-        <div class="procontent1_l col-12">
-            <div class="swiper-container gallery-top" {if count(explode(',',$content.pics)) == 1}style="height: 100%"{/if}>
-                <div class="swiper-wrapper">
-                    {foreach :explode(',',$content.pics) as $pic}
-                    <div class="swiper-slide" style="border: none">
-                        <img src="{$pic|cdnurl}" alt="{$content.title}" />
-                    </div>
-                    {/foreach}
-                </div>
-            </div>
-            {if count(explode(',',$content.pics)) > 1}
-            <div class="swiper-container gallery-thumbs">
-                <div class="swiper-wrapper" style="justify-content: center">
-                    {foreach :explode(',',$content.pics) as $pic}
-                    <div class="swiper-slide">
-                        <img src="{$pic|cdnurl}" alt="{$content.title}" />
-                    </div>
-                    {/foreach}
-                </div>
-            </div>
-            {/if}
-            <script>
-                var galleryThumbs = new Swiper(".gallery-thumbs", {
-                    spaceBetween: 10,
-                    slidesPerView: 4,
-                    // loop: true,
-                    autoplay: true,
-                    freeMode: true,
-                    loopedSlides: 5, //looped slides should be the same
-                    watchSlidesVisibility: true,
-                    watchSlidesProgress: true,
-                });
-                var galleryTop = new Swiper(".gallery-top", {
-                    spaceBetween: 10,
-                    // loop:true,
-                    autoplay: true,
-                    loopedSlides: 5, //looped slides should be the same
-                    navigation: {
-                        nextEl: ".swiper-button-next",
-                        prevEl: ".swiper-button-prev",
-                    },
-                    thumbs: {
-                        swiper: galleryThumbs,
-                    },
-                });
-            </script>
-        </div>
-    </div>
-</div>
-
 <section class="page-content">
     <div class="container">
         <div class="page-content-card card">
-            <div class="tabs" style="padding: 0">
-                <h5 style="
-                font-size: 16px;
-                font-weight: 600;
-                padding: 15px;
-                padding-left: 20px!important;
-                margin-left: 10px;
-                border-left: 4px solid var(--primary-color);">产品描述</h5>
-            </div>
             <div class="card-body rich-text-content">{$content.content}</div>
             <div class="card-body" style="display: none;">{$content.cpcs}</div>
         </div>
