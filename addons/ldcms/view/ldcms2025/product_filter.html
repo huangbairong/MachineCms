@@ -1,0 +1,110 @@
+<div class="product-filter-sidebar">
+    {ld:sort pid="$topid" alias="item2"}
+    <div class="filter-group {if $category['id']==$item2['id'] || $category['pid']==$item2['id'] || (isset($parentsid[1]) && $parentsid[1] == $item2['id'])} active {/if}">
+        <h5 class="filter-title">
+            <a href="{$item2.url}" title="{$item2.name}">
+                <i class="fa fa-caret-right"></i>
+                {$item2.name}
+            </a>
+        </h5>
+        {ld:sort pid="$item2['id']" alias="item3"}
+        <div class="filter-values">
+            <ul class="filter-list filter-list3">
+                <li class="filter-item-level3 {if $category['id']==$item3['id'] || $category['pid']==$item3['id'] || (isset($parentsid[2]) && $parentsid[2] == $item3['id'])} active {/if}">
+                    <a href="{$item3.url}" title="{$item3.name}">
+                        <i class="fa fa-circle-o"></i>
+                        {$item3.name}
+                    </a>
+                    {ld:sort pid="$item3['id']" alias="item4"}
+                    <ul class="filter-list filter-list4">
+                        <li class="filter-item-level4 {if $category['id']==$item4['id']} active {/if}">
+                            <a href="{$item4.url}" title="{$item4.name}">
+                                {$item4.name}
+                            </a>
+                        </li>
+                    </ul>
+                    {/ld:sort}
+                </li>
+            </ul>
+        </div>
+        {/ld:sort}
+    </div>
+    {/ld:sort}
+</div>
+
+<script>
+$(document).ready(function() {
+    var $sidebar = $('.product-filter-sidebar');
+    var $sidebarParent = $sidebar.parent();
+    var $placeholder = $('<div class="filter-sidebar-placeholder"></div>');
+
+    // 在侧边栏后面插入占位符
+    $sidebar.after($placeholder);
+
+    // 保存侧边栏的原始位置（只在初始化时获取一次）
+    var originalTop = $sidebar.offset().top;
+    var headerHeight = 100; // 导航栏高度，根据实际情况调整
+
+    // 设置占位符的高度
+    $placeholder.height($sidebar.outerHeight());
+
+    function updateSidebarPosition() {
+        var scrollTop = $(window).scrollTop();
+        var footerTop = $('footer').offset().top;
+        var sidebarWidth = $sidebarParent.width();
+        var sidebarHeight = $sidebar.outerHeight();
+        var sidebarBottom = scrollTop + sidebarHeight + headerHeight;
+
+        // 更新占位符高度
+        $placeholder.height(sidebarHeight);
+
+        if (scrollTop + headerHeight >= originalTop) {
+            // 需要固定侧边栏
+            $placeholder.addClass('active');
+
+            // 检查是否到达页面底部
+            if (sidebarBottom >= footerTop) {
+                // 到达底部，停止固定（使用 absolute 定位）
+                $sidebar.removeClass('sticky');
+                $sidebar.css({
+                    'position': 'absolute',
+                    'top': (footerTop - originalTop - sidebarHeight) + 'px',
+                    'width': sidebarWidth + 'px'
+                });
+            } else {
+                // 固定侧边栏
+                $sidebar.addClass('sticky');
+                $sidebar.css({
+                    'position': 'fixed',
+                    'width': sidebarWidth + 'px',
+                    'top': headerHeight + 'px'
+                });
+            }
+        } else {
+            // 恢复原始位置
+            $sidebar.removeClass('sticky');
+            $sidebar.css({
+                'position': '',
+                'top': '',
+                'width': ''
+            });
+            $placeholder.removeClass('active');
+        }
+    }
+
+    // 监听滚动事件
+    $(window).scroll(updateSidebarPosition);
+
+    // 窗口大小改变时重新计算
+    $(window).resize(function() {
+        // 窗口大小改变时，需要重新获取原始位置
+        if (!$sidebar.hasClass('sticky') && $sidebar.css('position') !== 'absolute') {
+            originalTop = $sidebar.offset().top;
+        }
+        updateSidebarPosition();
+    });
+
+    // 初始化时执行一次
+    updateSidebarPosition();
+});
+</script>

@@ -118,4 +118,4 @@ public/assets/addons/ldcms/ldcms2025/css/style.min.css，帮我优化分页的�
 产品详情页增加的内容区域增加筛选，使其左右结构
 、把产品列表筛选的内容分离处理，写成单独页面，让产品列表及产品详情进行引用
 、产品列表筛选的内容代码目前：addons/ldcms/view/ldcms2025/list_product.html:23
-、产品详情页
+、产品详情页代码：addons/ldcms/view/ldcms2025/detail_product.html
