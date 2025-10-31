@@ -105,3 +105,10 @@ public/assets/addons/ldcms/ldcms2025/css/style.min.css，帮我优化分页的�
 、代码位置:addons/ldcms/view/ldcms2025/detail_product.html
 、帮我重新调整页面，主要以介绍产品为主，而不是售卖产品为主
 、增加联系我们按钮，点击后跳转到锚点 （#form-contact-wrapper）
+
+
+产品中心筛选区域我增加了三级分类，帮我进行优化
+、样式优化
+、选中一级或二级或三级对应的子级和父级都要展开
+、页面代码位置：addons/ldcms/view/ldcms2025/list_product.html:37
+、css 代码位置:public/assets/addons/ldcms/ldcms2025/css/style.min.css

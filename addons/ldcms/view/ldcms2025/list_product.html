@@ -24,16 +24,26 @@
             <div class="col-lg-3 col-md-4">
                 <div class="product-filter-sidebar">
                     {ld:sort pid="$topid" alias="item2"}
+
                     <div class="filter-group {if $category['id']==$item2['id'] || $category['pid']==$item2['id']} active {/if}">
                         <h5 class="filter-title">
                             <a href="{$item2.url}" title="{$item2.name}">{$item2.name}</a>
                         </h5>
                         {ld:sort pid="$item2['id']" alias="item3"}
                         <div class="filter-values">
-                            <ul class="filter-list">
+                            <ul class="filter-list filter-list3">
                                 <li class="{if $category['id']==$item3['id']} active {/if}">
                                     <a href="{$item3.url}" title="{$item3.name}">{$item3.name}</a>
                                 </li>
+                                    {ld:sort pid="$item3['id']" alias="item4"}
+                                        <div class="filter-values">
+                                            <ul class="filter-list filter-list4">
+                                                <li class="{if $category['id']==$item4['id']} active {/if}">
+                                                    <a href="{$item4.url}" title="{$item4.name}">{$item4.name}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    {/ld:sort}
                             </ul>
                         </div>
                         {/ld:sort}
