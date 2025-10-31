@@ -26,23 +26,30 @@
                     {ld:sort pid="$topid" alias="item2"}
                     <div class="filter-group {if $category['id']==$item2['id'] || $category['pid']==$item2['id'] || (isset($parentsid[1]) && $parentsid[1] == $item2['id'])} active {/if}">
                         <h5 class="filter-title">
-                            <a href="{$item2.url}" title="{$item2.name}">{$item2.name}</a>
+                            <a href="{$item2.url}" title="{$item2.name}">
+                                <i class="fa fa-caret-right"></i>
+                                {$item2.name}
+                            </a>
                         </h5>
                         {ld:sort pid="$item2['id']" alias="item3"}
                         <div class="filter-values">
                             <ul class="filter-list filter-list3">
-                                <li class="{if $category['id']==$item3['id'] || $category['pid']==$item3['id']} active {/if}">
-                                    <a href="{$item3.url}" title="{$item3.name}">{$item3.name}</a>
-                                </li>
+                                <li class="filter-item-level3 {if $category['id']==$item3['id'] || $category['pid']==$item3['id'] || (isset($parentsid[2]) && $parentsid[2] == $item3['id'])} active {/if}">
+                                    <a href="{$item3.url}" title="{$item3.name}">
+                                        <i class="fa fa-circle-o"></i>
+                                        {$item3.name}
+                                    </a>
                                     {ld:sort pid="$item3['id']" alias="item4"}
-                                        <div class="filter-values">
-                                            <ul class="filter-list filter-list4">
-                                                <li class="{if $category['id']==$item4['id']} active {/if}">
-                                                    <a href="{$item4.url}" title="{$item4.name}">{$item4.name}</a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                    <ul class="filter-list filter-list4">
+                                        <li class="filter-item-level4 {if $category['id']==$item4['id']} active {/if}">
+                                            <a href="{$item4.url}" title="{$item4.name}">
+                                                <i class="fa fa-angle-right"></i>
+                                                {$item4.name}
+                                            </a>
+                                        </li>
+                                    </ul>
                                     {/ld:sort}
+                                </li>
                             </ul>
                         </div>
                         {/ld:sort}
