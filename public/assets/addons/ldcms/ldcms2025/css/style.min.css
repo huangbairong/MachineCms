@@ -2596,7 +2596,7 @@ header .search-wrapper .search-close {
 }
 
 .filter-item-level3 > a {
-    font-weight: 600;
+    font-weight: 600!important;
     font-size: 14px;
     color: #444
 }
@@ -2612,10 +2612,11 @@ header .search-wrapper .search-close {
 }
 
 .filter-item-level3.active > a i {
-    color: var(--primary-color)
+    color: white;
 }
 
 .filter-list4 {
+    margin-left: 10px;
     margin-top: 8px;
     padding-left: 15px;
     border-left: 2px solid #e9ecef
