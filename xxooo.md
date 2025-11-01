@@ -119,3 +119,14 @@ public/assets/addons/ldcms/ldcms2025/css/style.min.css，帮我优化分页的�
 、把产品列表筛选的内容分离处理，写成单独页面，让产品列表及产品详情进行引用
 、产品列表筛选的内容代码目前：addons/ldcms/view/ldcms2025/list_product.html:23
 、产品详情页代码：addons/ldcms/view/ldcms2025/detail_product.html
+
+
+帮我生成产品介绍页：
+、代码位置addons/ldcms/view/ldcms2025/test.html:11
+、样式全部使用行内样式
+、简约风格
+、页面内容包含（主要为机械产品）
+    第一个块是 产品参数
+    第二个块是 产品卖点
+    第三个块是 包装发货
+    第四个块是 相关视频
