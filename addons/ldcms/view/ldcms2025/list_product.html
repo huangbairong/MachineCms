@@ -19,9 +19,18 @@
 
 <section class="page-list product-wrapper m-5">
     <div class="container">
+        <!-- 移动端筛选按钮 -->
+        <button class="mobile-filter-btn d-lg-none">
+            <i class="fa fa-filter"></i>
+            <span>筛选</span>
+        </button>
+
+        <!-- 移动端筛选遮罩层 -->
+        <div class="mobile-filter-overlay d-lg-none"></div>
+
         <div class="row">
             <!-- 左侧筛选区域 -->
-            <div class="col-lg-3 col-md-4">
+            <div class="col-lg-3 col-md-4 mobile-filter-wrapper">
                 {include file="product_filter" /}
             </div>
 

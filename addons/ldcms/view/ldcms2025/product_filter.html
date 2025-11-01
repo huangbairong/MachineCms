@@ -1,4 +1,12 @@
 <div class="product-filter-sidebar">
+    <!-- 移动端关闭按钮 -->
+    <div class="mobile-filter-header d-lg-none">
+        <h5>筛选条件</h5>
+        <button class="mobile-filter-close">
+            <i class="fa fa-times"></i>
+        </button>
+    </div>
+
     {ld:sort pid="$topid" alias="item2"}
     <div class="filter-group {if $category['id']==$item2['id'] || $category['pid']==$item2['id'] || (isset($parentsid[1]) && $parentsid[1] == $item2['id'])} active {/if}">
         <h5 class="filter-title">
@@ -32,79 +40,246 @@
     {/ld:sort}
 </div>
 
+<style>
+/* 移动端筛选按钮 */
+.mobile-filter-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mobile-filter-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.mobile-filter-btn i {
+    font-size: 20px;
+    margin-bottom: 2px;
+}
+
+.mobile-filter-btn span {
+    font-size: 12px;
+}
+
+/* 移动端筛选遮罩层 */
+.mobile-filter-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.mobile-filter-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 移动端筛选面板 */
+@media (max-width: 991px) {
+    .mobile-filter-wrapper {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 80%;
+        max-width: 320px;
+        height: 100vh;
+        background: #fff;
+        z-index: 1001;
+        overflow-y: auto;
+        transition: left 0.3s ease;
+        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .mobile-filter-wrapper.active {
+        left: 0;
+    }
+
+    .product-filter-sidebar {
+        padding: 0;
+    }
+
+    .mobile-filter-header {
+        position: sticky;
+        top: 0;
+        background: #fff;
+        padding: 15px 20px;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 10;
+    }
+
+    .mobile-filter-header h5 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .mobile-filter-close {
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: #666;
+        cursor: pointer;
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .filter-group {
+        padding: 15px 20px;
+    }
+}
+</style>
+
 <script>
 $(document).ready(function() {
     var $sidebar = $('.product-filter-sidebar');
     var $sidebarParent = $sidebar.parent();
     var $placeholder = $('<div class="filter-sidebar-placeholder"></div>');
+    var $mobileFilterBtn = $('.mobile-filter-btn');
+    var $mobileFilterOverlay = $('.mobile-filter-overlay');
+    var $mobileFilterWrapper = $('.mobile-filter-wrapper');
+    var $mobileFilterClose = $('.mobile-filter-close');
 
-    // 在侧边栏后面插入占位符
-    $sidebar.after($placeholder);
-
-    // 保存侧边栏的原始位置（只在初始化时获取一次）
-    var originalTop = $sidebar.offset().top;
-    var headerHeight = 100; // 导航栏高度，根据实际情况调整
-
-    // 设置占位符的高度
-    $placeholder.height($sidebar.outerHeight());
-
-    function updateSidebarPosition() {
-        var scrollTop = $(window).scrollTop();
-        var footerTop = $('footer').offset().top;
-        var sidebarWidth = $sidebarParent.width();
-        var sidebarHeight = $sidebar.outerHeight();
-        var sidebarBottom = scrollTop + sidebarHeight + headerHeight;
-
-        // 更新占位符高度
-        $placeholder.height(sidebarHeight);
-
-        if (scrollTop + headerHeight >= originalTop) {
-            // 需要固定侧边栏
-            $placeholder.addClass('active');
-
-            // 检查是否到达页面底部
-            if (sidebarBottom >= footerTop) {
-                // 到达底部，停止固定（使用 absolute 定位）
-                $sidebar.removeClass('sticky');
-                $sidebar.css({
-                    'position': 'absolute',
-                    'top': (footerTop - originalTop - sidebarHeight) + 'px',
-                    'width': sidebarWidth + 'px'
-                });
-            } else {
-                // 固定侧边栏
-                $sidebar.addClass('sticky');
-                $sidebar.css({
-                    'position': 'fixed',
-                    'width': sidebarWidth + 'px',
-                    'top': headerHeight + 'px'
-                });
-            }
-        } else {
-            // 恢复原始位置
-            $sidebar.removeClass('sticky');
-            $sidebar.css({
-                'position': '',
-                'top': '',
-                'width': ''
-            });
-            $placeholder.removeClass('active');
-        }
+    // 移动端筛选功能
+    function openMobileFilter() {
+        $mobileFilterWrapper.addClass('active');
+        $mobileFilterOverlay.addClass('active');
+        $('body').css('overflow', 'hidden');
     }
 
-    // 监听滚动事件
-    $(window).scroll(updateSidebarPosition);
+    function closeMobileFilter() {
+        $mobileFilterWrapper.removeClass('active');
+        $mobileFilterOverlay.removeClass('active');
+        $('body').css('overflow', '');
+    }
 
-    // 窗口大小改变时重新计算
-    $(window).resize(function() {
-        // 窗口大小改变时，需要重新获取原始位置
-        if (!$sidebar.hasClass('sticky') && $sidebar.css('position') !== 'absolute') {
-            originalTop = $sidebar.offset().top;
+    // 打开筛选面板
+    $mobileFilterBtn.on('click', openMobileFilter);
+
+    // 关闭筛选面板
+    $mobileFilterClose.on('click', closeMobileFilter);
+    $mobileFilterOverlay.on('click', closeMobileFilter);
+
+    // PC端固定侧边栏功能
+    function initDesktopSticky() {
+        // 只在桌面端执行
+        if ($(window).width() < 992) {
+            return;
         }
-        updateSidebarPosition();
-    });
 
-    // 初始化时执行一次
-    updateSidebarPosition();
+        // 在侧边栏后面插入占位符
+        if ($placeholder.parent().length === 0) {
+            $sidebar.after($placeholder);
+        }
+
+        // 保存侧边栏的原始位置（只在初始化时获取一次）
+        var originalTop = $sidebar.offset().top;
+        var headerHeight = 100; // 导航栏高度，根据实际情况调整
+
+        // 设置占位符的高度
+        $placeholder.height($sidebar.outerHeight());
+
+        function updateSidebarPosition() {
+            // 只在桌面端执行
+            if ($(window).width() < 992) {
+                // 移动端重置样式
+                $sidebar.removeClass('sticky');
+                $sidebar.css({
+                    'position': '',
+                    'top': '',
+                    'width': ''
+                });
+                $placeholder.removeClass('active');
+                return;
+            }
+
+            var scrollTop = $(window).scrollTop();
+            var footerTop = $('footer').offset().top;
+            var sidebarWidth = $sidebarParent.width();
+            var sidebarHeight = $sidebar.outerHeight();
+            var sidebarBottom = scrollTop + sidebarHeight + headerHeight;
+
+            // 更新占位符高度
+            $placeholder.height(sidebarHeight);
+
+            if (scrollTop + headerHeight >= originalTop) {
+                // 需要固定侧边栏
+                $placeholder.addClass('active');
+
+                // 检查是否到达页面底部
+                if (sidebarBottom >= footerTop) {
+                    // 到达底部，停止固定（使用 absolute 定位）
+                    $sidebar.removeClass('sticky');
+                    $sidebar.css({
+                        'position': 'absolute',
+                        'top': (footerTop - originalTop - sidebarHeight) + 'px',
+                        'width': sidebarWidth + 'px'
+                    });
+                } else {
+                    // 固定侧边栏
+                    $sidebar.addClass('sticky');
+                    $sidebar.css({
+                        'position': 'fixed',
+                        'width': sidebarWidth + 'px',
+                        'top': headerHeight + 'px'
+                    });
+                }
+            } else {
+                // 恢复原始位置
+                $sidebar.removeClass('sticky');
+                $sidebar.css({
+                    'position': '',
+                    'top': '',
+                    'width': ''
+                });
+                $placeholder.removeClass('active');
+            }
+        }
+
+        // 监听滚动事件
+        $(window).scroll(updateSidebarPosition);
+
+        // 窗口大小改变时重新计算
+        $(window).resize(function() {
+            // 窗口大小改变时，需要重新获取原始位置
+            if (!$sidebar.hasClass('sticky') && $sidebar.css('position') !== 'absolute') {
+                originalTop = $sidebar.offset().top;
+            }
+            updateSidebarPosition();
+        });
+
+        // 初始化时执行一次
+        updateSidebarPosition();
+    }
+
+    // 初始化桌面端固定侧边栏
+    initDesktopSticky();
 });
 </script>
