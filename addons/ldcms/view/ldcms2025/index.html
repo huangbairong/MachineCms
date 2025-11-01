@@ -81,7 +81,7 @@
         </div>
     </div>
     <div class="product-list row">
-        {ld:list cid="$cate['id']" limit='4'  }
+        {ld:list cid="$cate['id']" limit='4' condition="FIND_IN_SET(0, extend.types)" }
         <div class="product-item col-xl-3 col-lg-3 col-md-6 col-sm-6">
             <a href="{$item.url}" class="product-item-wrapper wow fadeInUp" data-wow-delay="0.{$i}s">
                 <div class="pic">

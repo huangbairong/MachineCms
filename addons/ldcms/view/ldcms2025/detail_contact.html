@@ -66,7 +66,7 @@
     </div>
 </section>
 
-<!-- 案例展示 -->
+<!-- 产品信息 -->
 {ld:action action="home_block" model_table_name="product" alias="cate"}
 <section class="case-wrapper">
     <div class="container position-relative">
@@ -80,7 +80,7 @@
 
         <div class="swiper row case-swiper">
             <ul class="swiper-wrapper">
-                {ld:list cid="$cate['id']" limit='6'}
+                {ld:list cid="$cate['id']" limit='6' condition="FIND_IN_SET(1, extend.types)"}
                 <li class="swiper-slide wow fadeInRight" data-wow-delay="0.{$i}s">
                     <a href="{$item.url}" title="{$item.title}">
                         <div class="swiper-slide-img">
@@ -106,7 +106,7 @@
     </div>
 </section>
 {/ld:action}
-<!-- 案例展示 e -->
+<!-- 产品信息 e -->
 
 <section class="page-content contact-wrapper">
     <div class="container">
