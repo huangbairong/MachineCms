@@ -61,73 +61,116 @@
                     </div>
                 </div>
 
-                <div class="contact_t" id="dtdh">
-                    <div class="con1400">
-                        <div class="contact_map animate" data-animate="fadeInUp" data-duration="1.5s" data-delay="0.1s">
-                            <h3 class="neititle">地图导航</h3>
-                            <div class="contact_mapitem">
-                                <div class="contact_b">
-                                    <div id="map"></div>
-                                    <style>
-                                        #map {
-                                            overflow: hidden;
-                                            width: 100%;
-                                            height: 480px;
-                                            margin: 0;
-                                            font-family: "微软雅黑";
-                                        }
-                                    </style>
+            </div>
+        </div>
+    </div>
+</section>
 
-                                    <script src="https://maps.googleapis.com/maps/api/js?key={$ld.google_maps_key}&callback=initMap" async defer></script>
-                                    <script type="text/javascript">
-                                        function initMap() {
-                                            // 解析经纬度（格式：经度,纬度）
-                                            var coords = '{$ld.mpdw}'.split(',');
-                                            var lng = parseFloat(coords[0]);
-                                            var lat = parseFloat(coords[1]);
+<!-- 案例展示 -->
+{ld:action action="home_block" model_table_name="product" alias="cate"}
+<section class="case-wrapper">
+    <div class="container position-relative">
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="public-title">
+                <h3>{$cate.name}</h3>
+                <p>{$cate['ename']}</p>
+            </div>
+            <a href="{$cate.url}" class="public-more">MORE <i class="fa fa-angle-double-right"></i> </a>
+        </div>
 
-                                            // 创建地图中心点
-                                            var center = { lat: lat, lng: lng };
-
-                                            // 初始化地图
-                                            var map = new google.maps.Map(document.getElementById('map'), {
-                                                zoom: 15,
-                                                center: center,
-                                                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                                                zoomControl: true,
-                                                scaleControl: true,
-                                                streetViewControl: true,
-                                                fullscreenControl: true
-                                            });
-
-                                            // 添加标记点
-                                            var marker = new google.maps.Marker({
-                                                position: center,
-                                                map: map,
-                                                title: '{$ld.company|default="公司位置"}',
-                                                animation: google.maps.Animation.DROP,
-                                                // 自定义图标（可选）
-                                                // icon: {
-                                                //     url: '__ADDON__/ldcms2024/images/marker-icon.png',
-                                                //     scaledSize: new google.maps.Size(35, 50)
-                                                // }
-                                            });
-
-                                            // 添加信息窗口
-                                            var infoWindow = new google.maps.InfoWindow({
-                                                content: '<div style="padding: 10px;"><h4>{$ld.company|default="公司名称"}</h4><p>{$ld.address|default="公司地址"}</p></div>'
-                                            });
-
-                                            // 点击标记显示信息窗口
-                                            marker.addListener('click', function() {
-                                                infoWindow.open(map, marker);
-                                            });
-                                        }
-                                    </script>
-                                </div>
-                            </div>
+        <div class="swiper row case-swiper">
+            <ul class="swiper-wrapper">
+                {ld:list cid="$cate['id']" limit='6'}
+                <li class="swiper-slide wow fadeInRight" data-wow-delay="0.{$i}s">
+                    <a href="{$item.url}" title="{$item.title}">
+                        <div class="swiper-slide-img">
+                            <img src="{$item.image}" alt="{$item.title}" />
                         </div>
-                    </div>
+                        <div class="case-content-wrapper">
+                            <h3>{$item.title}</h3>
+                            <p>{$item.description}</p>
+                        </div>
+                    </a>
+                </li>
+                {/ld:list}
+            </ul>
+        </div>
+        <!-- Add Arrows -->
+        <div class="case-next">
+            <i class="fa fa-angle-right"></i>
+        </div>
+        <div class="case-prev">
+            <i class="fa fa-angle-left"></i>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</section>
+{/ld:action}
+<!-- 案例展示 e -->
+
+<section class="page-content contact-wrapper">
+    <div class="container">
+        <div class="contact_map animate" data-animate="fadeInUp" data-duration="1.5s" data-delay="0.1s">
+            <h3 class="neititle">地图导航</h3>
+            <div class="contact_mapitem">
+                <div class="contact_b">
+                    <div id="map"></div>
+                    <style>
+                        #map {
+                            overflow: hidden;
+                            width: 100%;
+                            height: 480px;
+                            margin: 0;
+                            font-family: "微软雅黑";
+                        }
+                    </style>
+
+                    <script src="https://maps.googleapis.com/maps/api/js?key={$ld.google_maps_key}&callback=initMap" async defer></script>
+                    <script type="text/javascript">
+                        function initMap() {
+                            // 解析经纬度（格式：经度,纬度）
+                            var coords = '{$ld.mpdw}'.split(',');
+                            var lng = parseFloat(coords[0]);
+                            var lat = parseFloat(coords[1]);
+
+                            // 创建地图中心点
+                            var center = { lat: lat, lng: lng };
+
+                            // 初始化地图
+                            var map = new google.maps.Map(document.getElementById('map'), {
+                                zoom: 15,
+                                center: center,
+                                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                                zoomControl: true,
+                                scaleControl: true,
+                                streetViewControl: true,
+                                fullscreenControl: true
+                            });
+
+                            // 添加标记点
+                            var marker = new google.maps.Marker({
+                                position: center,
+                                map: map,
+                                title: '{$ld.company|default="公司位置"}',
+                                animation: google.maps.Animation.DROP,
+                                // 自定义图标（可选）
+                                // icon: {
+                                //     url: '__ADDON__/ldcms2024/images/marker-icon.png',
+                                //     scaledSize: new google.maps.Size(35, 50)
+                                // }
+                            });
+
+                            // 添加信息窗口
+                            var infoWindow = new google.maps.InfoWindow({
+                                content: '<div style="padding: 10px;"><h4>{$ld.company|default="公司名称"}</h4><p>{$ld.address|default="公司地址"}</p></div>'
+                            });
+
+                            // 点击标记显示信息窗口
+                            marker.addListener('click', function() {
+                                infoWindow.open(map, marker);
+                            });
+                        }
+                    </script>
                 </div>
             </div>
         </div>

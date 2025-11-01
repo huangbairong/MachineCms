@@ -128,7 +128,7 @@
             <ul class="swiper-wrapper">
                 {ld:list cid="$cate['id']" limit='6'}
                 <li class="swiper-slide wow fadeInRight" data-wow-delay="0.{$i}s">
-                    <a href="#" title="{$item.title}">
+                    <a href="{$item.url}" title="{$item.title}">
                         <div class="swiper-slide-img">
                             <img src="{$item.image}" alt="{$item.title}" />
                         </div>
@@ -167,10 +167,10 @@
             <div class="col-lg-6 col-md-12 wow fadeInUp" data-wow-delay="0.{$i}s">
                 <div class="row news-item">
                     <div class="col-md-4 px-0 news-item-img">
-                        <a href="#"><img src="{$item.image}" alt="{$item.title}" /></a>
+                        <a href="{$item.url}"><img src="{$item.image}" alt="{$item.title}" /></a>
                     </div>
                     <div class="col-md-8 px-0">
-                        <a href="#" class="card-body">
+                        <a href="{$item.url}" class="card-body">
                             <h5 class="card-title text-ellipsis">{$item.title}</h5>
                             <p class="card-info">
                                 <span><i class="fa fa-clock-o"></i> {$item.show_time}</span>
