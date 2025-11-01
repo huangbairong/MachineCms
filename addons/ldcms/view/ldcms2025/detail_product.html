@@ -19,7 +19,7 @@
 {include file="neinav" /}
 <!-- 内页导航 end -->
 
-<section class="page-content product-detail-wrapper m-5">
+<section class="page-content product-detail-wrapper">
     <div class="container">
         <!-- 移动端筛选按钮 -->
         <button class="mobile-filter-btn d-lg-none">
@@ -38,10 +38,8 @@
 
             <!-- 右侧产品详情区域 -->
             <div class="col-lg-9 col-md-8">
-                <div class="page-content-card card">
-                    <div class="card-body rich-text-content">{$content.content}</div>
-                    <div class="card-body" style="display: none;">{$content.cpcs}</div>
-                </div>
+                <div class="rich-text-content">{$content.content}</div>
+                <div style="display: none;">{$content.cpcs}</div>
             </div>
         </div>
     </div>
