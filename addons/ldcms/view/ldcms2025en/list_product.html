@@ -8,64 +8,64 @@
             <p>{$item.ename}</p>
             <h2>{$item.name}</h2>
         </div>
-
-        <!-- 内页导航 -->
-        {include file="neinav" /}
-        <!-- 内页导航 end -->
     </div>
 </div>
 {/ld:sort}
 <!-- neibanner end -->
 
-<section class="page-list product-wrapper">
+<!-- 内页导航 -->
+{include file="neinav" /}
+<!-- 内页导航 end -->
+
+<section class="page-list product-wrapper m-5">
     <div class="container">
-        <div class="product-filter">
-            {ld:filter mid="$category['mid']" title_text="全部"}
-            <div class="filter-row d-flex">
-                <div class="filter-title">
-                  {:__($item.title)}
-                </div>
-                <div class="filter-values">
-                    <ul class="d-flex flex-wrap">
-                        {volist name="$item.content" id="li"}
-                        <li class="{$li.active?'active':''}">
-                            <a href="{$li.url}">{:__($li.title)}</a>
-                        </li>
-                        {/volist}
-                    </ul>
-                </div>
-            </div>
-            {/ld:filter}
-        </div>
+        <!-- 移动端筛选按钮 -->
+        <button class="mobile-filter-btn d-lg-none">
+            <i class="fa fa-filter"></i>
+            <span>筛选</span>
+        </button>
 
-        <div class="product-list row">
-            {ld:list page='true'}
-            <div class="product-item col-lg-3 col-md-6 col-sm-6">
-                <a href="{$item.url}" class="product-item-wrapper wow fadeInUp" data-wow-delay="0.{$i}s">
-                    <div class="pic">
-                        <img class="img-fluid" src="{$item.image}" alt="{$item.title}" />
-                    </div>
-                    <div class="content-wrapper text-center px-3 py-3">
-                        <h3 class="product-item-title text-ellipsis">{$item.title}</h3>
-                        <p class="product-item-info text-ellipsis-2">{$item.description}</p>
-                        <div class="product-item-bottom d-flex justify-content-between">
-                            <div class="price">
-                                <span class="price-unit">￥</span>
-                                <strong>{$item.price}</strong>
+        <!-- 移动端筛选遮罩层 -->
+        <div class="mobile-filter-overlay d-lg-none"></div>
+
+        <div class="row">
+            <!-- 左侧筛选区域 -->
+            <div class="col-lg-3 col-md-4 mobile-filter-wrapper">
+                {include file="product_filter" /}
+            </div>
+
+            <!-- 右侧产品列表区域 -->
+            <div class="col-lg-9 col-md-8">
+                <div class="product-list row">
+                    {ld:list page='true' limit='8'}
+                    <div class="product-item col-lg-4 col-md-6 col-sm-6">
+                        <a href="{$item.url}" class="product-item-wrapper wow fadeInUp" data-wow-delay="0.{$i}s">
+                            <div class="pic">
+                                <img class="img-fluid" src="{$item.image}" alt="{$item.title}" />
                             </div>
-                            <span class="public-more">
-                                MORE
-                                <i class="fa fa-angle-double-right"></i>
-                            </span>
-                        </div>
+                            <div class="content-wrapper text-center px-3 py-3">
+                                <h3 class="product-item-title text-ellipsis">{$item.title}</h3>
+                                <p class="product-item-info text-ellipsis-2">{$item.description}</p>
+                                <div class="product-item-bottom d-flex justify-content-between">
+                                    <div class="price">
+                                        <!--<span class="price-unit">￥</span>
+                                        <strong>{$item.price}</strong>-->
+                                    </div>
+                                    <span class="public-more">
+                                        MORE
+                                        <i class="fa fa-angle-double-right"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                </a>
-            </div>
-            {/ld:list}
-        </div>
+                    {/ld:list}
+                </div>
 
-        <div class="page-pagination">
-          {$pages}
+                <div class="page-pagination">
+                    {$pages}
+                </div>
+            </div>
         </div>
     </div>
 </section>

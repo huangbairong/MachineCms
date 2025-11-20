@@ -1,52 +1,100 @@
-<footer>
-    <div class="container footer-link d-flex">
-        <div class="left d-flex">
-            <div class="public-title">
-                <h3>friendly link</h3>
-                <p>friendly link</p>
-            </div>
-            <ul class="d-flex align-items-center footer-link-wrapper">
-                {ld:link name='link'}
-                <li>
-                    <a href="{$item.url}" target="{$item.target}">{$item.title}</a>
-                </li>
-                {/ld:link}
-            </ul>
-        </div>
-        <div class="social"></div>
-    </div>
+
+<!-- 留言表单 s -->
+<section id="form-contact-wrapper" class="contact-wrapper wow fadeInUp">
     <div class="container">
-        <div class="d-flex row">
-            <div class="footer-menu col-md-8  d-none d-lg-block">
-                <ul class="d-flex flex-1">
-                    {ld:nav}
-                    {if $item.child>0}
-                    <li>
-                        <dl>
-                            <dt>{$item.name}</dt>
-                            {ld:sort pid="$item['id']" alias="nav2"}
-                            <dd>
-                                <a href="{$nav2.url}"
-                                title="{$nav2.name}">{$nav2.name}</a>
-                            </dd>
-                            {/ld:sort}
-                        </dl>
-                    </li>
-                    {/if}
-                    {/ld:nav}
-                </ul>
+        <div class="contact-content">
+            <div class="public-title">
+                <h3>提供优质服务</h3>
+                <p>随时我们联系</p>
             </div>
-            <div class="footer-contact col-md-4">
-                <p>{$ld.tel}</p>
-                <p>{$ld.address}</p>
-                <p>{$ld.email}</p>
-                <div class="qrcodes d-flex">
-                    {ld:slide name='qrcode'}
-                    <div class="qrcode-img">
-                        <img src="{$item.image}" alt="{$item.title}" />
-                        <p>{$item.title}</p>
+            <form class="d-flex contact-form" action="{:addon_url('ldcms/diyform/message')}" method="post">
+                <input type="text" name="uname" placeholder="姓名" />
+                <input type="text" name="mobile" placeholder="电话" />
+                <input class="remark" type="text" name="remark" placeholder="留言" />
+                {:token()}
+                <button disabled type="submit">提交</button>
+            </form>
+        </div>
+    </div>
+</section>
+<footer class="modern-footer">
+    <div class="footer-main">
+        <div class="container">
+            <div class="row">
+                <!-- 关注我们 -->
+                <div class="col-lg-4 col-md-6 footer-section">
+                    <h4 class="footer-title">关注我们</h4>
+                    <div class="social-qrcodes">
+                        <div class="qrcode-item">
+                            <img src="{$ld.wechat_qr}" alt="微信二维码" />
+                            <p>微信二维码</p>
+                        </div>
+                        <div class="qrcode-item">
+                            <img src="{$ld.whatsapp_qr}" alt="whatapp二维码" />
+                            <p>whatapp二维码</p>
+                        </div>
                     </div>
-                    {/ld:slide}
+                    <div class="footer-social-links">
+                        <a href="https://www.baidu.com" class="social-link"><i class="fa fa-facebook"></i></a>
+                        <a href="https://www.baidu.com" class="social-link"><i class="fa fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- 快速导航 -->
+                <div class="col-lg-2 col-md-6 footer-section d-none d-md-block">
+                    <h4 class="footer-title">快速导航</h4>
+                    <ul class="footer-links">
+                        {ld:nav limit="6"}
+                        <li><a href="{$item.url}">{$item.name}</a></li>
+                        {/ld:nav}
+                    </ul>
+                </div>
+
+                <!-- 产品服务 -->
+                <div class="col-lg-2 col-md-6 footer-section d-none d-md-block">
+                    <h4 class="footer-title">产品服务</h4>
+                    <ul class="footer-links">
+                        {ld:sort pid="144" alias="item"}
+                        <li><a href="{$item.url}">{$item.name}</a></li>
+                        {/ld:sort}
+                    </ul>
+                </div>
+
+                <!-- 联系信息 -->
+                <div class="col-lg-4 col-md-6 footer-section">
+                    <h4 class="footer-title">联系我们</h4>
+                    <div class="footer-brand" style="display: none">
+                        <h3 class="brand-title">{$ld.sitename}</h3>
+                        <p class="brand-slogan">{$ld.seo_description}</p>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fa fa-phone"></i>
+                            <span>{$ld.tel}</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fa fa-envelope"></i>
+                            <span>{$ld.email}</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fa fa-map-marker"></i>
+                            <span>{$ld.address}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 友情链接 -->
+    <div class="footer-links-section">
+        <div class="container">
+            <div class="footer-friendly-links">
+                <span class="links-title">友情链接：</span>
+                <div class="links-wrapper">
+                    {ld:link name='link'}
+                    <a href="{$item.url}" target="{$item.target}">{$item.title}</a>
+                    {/ld:link}
                 </div>
             </div>
         </div>
@@ -57,22 +105,26 @@
     <div class="container">
         <p>
             {$ld.copyright}&nbsp;
-            <a href="{:addon_url('ldcms/sitemap/index',[],false)}">Sitemap</a>
+            <a href="#">Sitemap</a>
 
-            <a href="https://beian.miit.gov.cn" target="_blank" rel="nofollow">{:__('ICP')}:{$ld.icp}</a>
+            <a href="#" target="_blank" rel="nofollow">{:__('ICP')}:{$ld.icp}</a>
         </p>
     </div>
 </div>
 
 <div id="backTop">
-	{if $ld.phone}
-    	<span class="ft-tel"><i class="fa fa-phone"></i><small class="telTop"><a href="tel:{$ld.phone}" style="color: #333;">{$ld.phone}</a></small></span>
-	{/if}
-	{if $ld.wechat}
-  	<span class="ft-wx"><i class="fa fa-wechat"></i><small class="weixin"><b class="fa fa-caret-right"></b><img src="{$ld.wechat}" alt="{:__('ScanQRCode')}"></small></span>
-	{/if}
-	{if $ld.qq}
-	<span class="ft-qq"><a href="http://wpa.qq.com/msgrd?v=3&uin={$ld.qq}&site=qq&menu=yes" target="_blank" class="socialLink s-qq" rel="nofollow"><i class="fa fa-qq"></i></a></span>
-	{/if}
-	<span id="gttop" title="Go to Top"> <i class="fa fa-arrow-up"></i> </span>
+    {if $ld.wechat_qr}
+    <span class="ft-wx"><i class="fa fa-wechat"></i><small class="weixin"><b class="fa fa-caret-right"></b><img src="{$ld.wechat_qr}" alt="{:__('ScanQRCode')}"></small></span>
+    {/if}
+    {if $ld.whatsapp_qr}
+    <a target="_blank" href="{$ld.whatapp_link}">
+        <span class="ft-wx" style="border-radius:unset"><i class="fa fa-whatsapp"></i><small class="weixin">
+            <b class="fa fa-caret-right"></b>
+            <img src="{$ld.whatsapp_qr}" alt="{:__('ScanQRCode')}">
+            <span href="{$ld.whatapp_link}" style="border:none;height:10px;text-align:center;width:100%;font-size:12px;display: block;margin: auto;color: var(--primary-color)" target="_blank">点击即可对话</span>
+        </small>
+        </span>
+    </a>
+    {/if}
+	<span id="gttop" title="返回顶部"> <i class="fa fa-arrow-up"></i> </span>
 </div>

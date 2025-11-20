@@ -8,22 +8,277 @@
             <p>{$item.ename}</p>
             <h2>{$item.name}</h2>
         </div>
-
-        <!-- 内页导航 -->
-        {include file="neinav" /}
-        <!-- 内页导航 end -->
     </div>
 </div>
 {/ld:sort}
 <!-- neibanner end -->
 
+<!-- 内页导航 -->
+{include file="neinav" /}
+<!-- 内页导航 end -->
 
-<section class="page-content">
-    <div class="container">
-        <div class="page-content-card card">
-            <div class="card-body">{$content.content}</div>
+<section class="about-wrapper d-lg-flex" style="margin-top: 20px; align-items: center;">
+    <div class="col-lg-6 col-md-12 col-sm-12" style="display: flex; align-items: center; z-index: 5">
+        <div class="left-img wow slideInLeft" style="width: 100%;">
+            <img src="{$content.image}" alt="{$content.title}" />
+        </div>
+    </div>
+    <div class="about-right col-lg-6 col-md-12 col-sm-12">
+        <div class="about-right-content wow slideInRight">
+            <h2>{$content.title}</h2>
+            {if $content.subtitle}
+            <p>{$content.subtitle}</p>
+            {/if}
+            <div class="info" style="max-height: none; overflow: visible; -webkit-line-clamp: unset; display: block;">{$content.content}</div>
         </div>
     </div>
 </section>
+
+<!--公司概况-->
+<section class="cultBox">
+    <div class="dataBox">
+        <div class="con font16">
+		<span class="item">
+			<b class="font44"><span class="timer" data-to="25" data-speed="1500">25</span>年</b>
+			<i>系统开发经验</i>
+		</span>
+            <span class="line"></span> <span class="item">
+			<b class="font44"><span class="timer" data-to="1500" data-speed="1500">1500</span>+</b>
+			<i>客户共同选择</i>
+		</span>
+            <span class="line"></span> <span class="item">
+			<b class="font44"><span class="timer" data-to="16" data-speed="1500">16</span>项</b>
+			<i>软件著作权</i>
+		</span>
+            <span class="line"></span> <span class="item">
+			<b class="font44"><span class="timer" data-to="20" data-speed="1500">20</span>+</b>
+			<i>技术开发团队</i>
+		</span>
+        </div>
+    </div>
+</section>
+<style>
+    /*文化*/
+    .cultBox .container{
+        padding-top: 0.92rem;
+        margin: 0 auto;
+    }
+    .cultBox .title {
+        text-align: center;
+        color: #1e252f;
+    }
+    .cultBox .list {
+        margin-top: 0.92rem;
+        background: url(./assets/img/our-ban.png) center 0 repeat-y;
+        background-size: 8.30rem auto;
+    }
+    .cultBox .list li {
+        margin: 1.5em 0 0 auto;
+        width: 35rem;
+    }
+    .cultBox .list li:first-child {
+        margin-top: 0;
+    }
+    .cultBox .list li:nth-child(even) {
+        margin: -3.4em auto 0 0;
+    }
+    .cultBox .list .name {
+        font-weight: bold;
+    }
+    .cultBox .list .name .pic {
+        display: inline-block;
+        vertical-align: middle;
+        width: 1em;
+        height: 1em;
+        line-height: 1em;
+        text-align: center;
+        background-color: var(--primary-second-color);
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+    }
+    .cultBox .list .name .pic img {
+        margin: 0.15em auto 0;
+        width: 0.8em;
+        height: auto;
+        display: inline-block;
+    }
+    .cultBox .list .name span {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .cultBox .list .intro {
+        margin-top: 1em;
+        color: #666;
+    }
+    .cultBox .title {
+        box-sizing: border-box;
+        color: rgb(30, 37, 47);
+        display: block;
+        font-size: 40px;
+        font-weight: 700;
+        margin-bottom: 30px;
+    }
+    @media only screen and (max-width: 1600px) {
+        .cultBox .container{
+            width: 88%;
+        }
+        .cultBox .list li {
+            width: 18.76rem;
+        }
+    }
+    @media only screen and (max-width: 767px){
+        .cultBox .list li {
+            width: 10.76rem;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .cultBox,
+        .histBox,
+        .qualiBox {
+            padding-top: 3rem;
+            width: auto;
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }
+    }
+    @media (max-width: 1260px){
+        .font16 {
+            font-size: 14px;
+        }
+    }
+
+    /* dataBox 样式 */
+    .cultBox .dataBox {
+        background: linear-gradient(135deg, var(--primary-second-color) 0%, var(--primary-color) 100%);
+        padding: 4rem 2rem;
+        margin-top: 4rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cultBox .dataBox::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -20%;
+        width: 200px;
+        height: 200px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        transform: rotate(45deg);
+    }
+
+    .cultBox .dataBox::after {
+        content: '';
+        position: absolute;
+        bottom: -30%;
+        left: -10%;
+        width: 150px;
+        height: 150px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 50%;
+    }
+
+    .cultBox .dataBox .con {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+    }
+
+    .cultBox .dataBox .item {
+        text-align: center;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 120px;
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+    .cultBox .dataBox .item b {
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        background: linear-gradient(45deg, #fff, #f0f8ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-size: 2.1rem;
+    }
+
+    .cultBox .dataBox .item i {
+        font-style: normal;
+        font-size: 1.1rem;
+        opacity: 0.95;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+    }
+
+    .cultBox .dataBox .line {
+        width: 2px;
+        height: 60px;
+        background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.6), transparent);
+        display: block;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+        .cultBox .dataBox {
+            padding: 3rem 1rem;
+        }
+
+        .cultBox .dataBox .con {
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .cultBox .dataBox .line {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.6), transparent);
+        }
+
+        .cultBox .dataBox .item {
+            min-width: auto;
+        }
+
+        .cultBox .dataBox .item b {
+            font-size: 2.5rem;
+        }
+
+        .cultBox .dataBox .item i {
+            font-size: 1rem;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .cultBox .dataBox .con {
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .cultBox .dataBox .line {
+            display: none;
+        }
+    }
+</style>
+<!--公司概况 end-->
 
 {/block}
