@@ -412,15 +412,15 @@ function copySection(sectionId) {
     button.style.display = 'none';
 
     try {
-        // 创建选区
+        // 创建选区，选中整个父级div的内容
         const range = document.createRange();
-        range.selectNodeContents(section);
+        range.selectNode(section);
 
         const selection = window.getSelection();
         selection.removeAllRanges();
         selection.addRange(range);
 
-        // 复制选中的内容
+        // 复制选中的内容（富文本格式）
         document.execCommand('copy');
 
         // 清除选区
