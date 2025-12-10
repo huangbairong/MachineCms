@@ -913,7 +913,7 @@ header .search-wrapper .search-close {
     justify-content: center;
     position: relative;
     margin-left: -20px;
-    z-index: 2;
+    z-index: 6;
     min-height: 650px;
     width: calc(50% + 20px);
 }
