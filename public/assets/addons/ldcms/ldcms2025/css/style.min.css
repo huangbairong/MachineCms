@@ -682,6 +682,7 @@ header .search-wrapper .search-close {
 }
 
 .product-wrapper .product-list .product-item .product-item-wrapper {
+    padding: 10px;
     display: block;
     border-radius: 12px;
     background-color: #fff;
@@ -708,7 +709,7 @@ header .search-wrapper .search-close {
 }
 
 .product-wrapper .product-list .product-item .product-item-wrapper:hover .content-wrapper .product-item-title {
-    color: #fff
+    color: #fff;
 }
 
 .product-wrapper .product-list .product-item .product-item-wrapper:hover .content-wrapper .product-item-info {
