@@ -858,7 +858,8 @@ header .search-wrapper .search-close {
     margin-top: 80px;
     margin-bottom: 80px;
     position: relative;
-    overflow: hidden
+    overflow: hidden;
+    border-radius:20px;
 }
 
 .about-wrapper::before {
@@ -3227,9 +3228,6 @@ header .search-wrapper .search-close {
         bottom: 20px
     }
 
-    .about-wrapper{
-        overflow: hidden;
-    }
     .about-wrapper .about-right {
         height: auto;
         min-height: auto;
