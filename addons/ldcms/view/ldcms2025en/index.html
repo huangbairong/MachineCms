@@ -38,34 +38,36 @@
 
 <!-- 关于我们 s -->
 {ld:action action="home_block" model_table_name="page" alias="cate"}
-<section class="about-wrapper d-lg-flex">
-    <div class="left-img overflow-hidden col-lg-6 col-md-12 col-sm-12 wow slideInLeft">
-        {ld:slide name="about"}
-        <img src="{$item.image}" alt="{$item.title}" />
-        {/ld:slide}
-    </div>
-    <div class="about-right col-lg-6 col-md-12 col-sm-12">
-        {ld:content cid="$cate['id']" }
-        <div class="about-right-content wow slideInRight">
-            <h2>{$cate.name}</h2>
-            <p>{$cate['ename']}</p>
-            <div class="info">{$content.content|ld_str_cut=400}</div>
-            <div class="count-wrapper d-flex">
-                <div class="d-flex">
-                    {foreach $ld.about_count as $key=>$item}
-                    <div class="count-item">
-                        <div class="count-text">
-                            <span class="number">{$item.value1}</span>
-                            <span class="unit">{$item.value2}</span>
-                        </div>
-                        <p>{$item.value3}</p>
-                    </div>
-                    {/foreach}
-                </div>
-                <a href="{$cate.url}" class="public-more">{:__('View More')} <i class="fa fa-angle-double-right"></i> </a>
-            </div>
+<section class="case-wrapper">
+    <div class="container about-wrapper d-lg-flex">
+        <div class="left-img overflow-hidden col-lg-6 col-md-12 col-sm-12 wow slideInLeft">
+            {ld:slide name="about"}
+            <img src="{$item.image}" alt="{$item.title}" />
+            {/ld:slide}
         </div>
-        {/ld:content}
+        <div class="about-right col-lg-6 col-md-12 col-sm-12">
+            {ld:content cid="$cate['id']" }
+            <div class="about-right-content wow slideInRight">
+                <h2>{$cate.name}</h2>
+                <p>{$cate['ename']}</p>
+                <div class="info">{$content.content|ld_str_cut=400}</div>
+                <div class="count-wrapper d-flex">
+                    <div class="d-flex">
+                        {foreach $ld.about_count as $key=>$item}
+                        <div class="count-item">
+                            <div class="count-text">
+                                <span class="number">{$item.value1}</span>
+                                <span class="unit">{$item.value2}</span>
+                            </div>
+                            <p>{$item.value3}</p>
+                        </div>
+                        {/foreach}
+                    </div>
+                    <a href="{$cate.url}" class="public-more">{:__('View More')} <i class="fa fa-angle-double-right"></i> </a>
+                </div>
+            </div>
+            {/ld:content}
+        </div>
     </div>
 </section>
 {/ld:action}
@@ -89,17 +91,6 @@
                 </div>
                 <div class="content-wrapper text-center px-3 py-3">
                     <h3 class="product-item-title text-ellipsis">{$item.title}</h3>
-                    <p class="product-item-info text-ellipsis-2">{$item.description}</p>
-                    <div class="product-item-bottom d-flex justify-content-between">
-                        <div class="price">
-                            <!--<span class="price-unit">￥</span>
-                            <strong>{$item.price}</strong>-->
-                        </div>
-                        <span class="public-more">
-                            MORE
-                            <i class="fa fa-angle-double-right"></i>
-                        </span>
-                    </div>
                 </div>
             </a>
         </div>
@@ -134,7 +125,6 @@
                         </div>
                         <div class="case-content-wrapper">
                             <h3>{$item.title}</h3>
-                            <p>{$item.description}</p>
                         </div>
                     </a>
                 </li>
