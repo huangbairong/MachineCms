@@ -855,8 +855,8 @@ header .search-wrapper .search-close {
 }
 
 .about-wrapper {
-    margin-top: 80px;
-    margin-bottom: 80px;
+    /*margin-top: 80px;*/
+    /*margin-bottom: 80px;*/
     position: relative;
     overflow: hidden;
     border-radius:20px;
@@ -1094,7 +1094,7 @@ header .search-wrapper .search-close {
 
 .case-wrapper {
     background-color: #fff;
-    padding: 60px 0;
+    padding: 30px 0;
     position: relative
 }
 
@@ -1317,7 +1317,7 @@ header .search-wrapper .search-close {
 }
 
 .news-wrapper {
-    padding: 60px 0
+    padding: 30px 0
 }
 
 .news-wrapper .news-list {
