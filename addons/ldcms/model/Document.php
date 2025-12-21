@@ -148,6 +148,64 @@ class Document extends Frontend
         //增加排序
         $order = isset($params['_order']) && !empty($params['_order']) ? $params['_order'] : $this->getSort();
 
+        // 处理一级分类随机选择产品
+        $random_from_subcategory = $params['random_from_subcategory'] ?? false;
+        if ($random_from_subcategory && !empty($cid) && empty($id)) {
+            $categoryModel = Category::instance();
+            $currentCategory = $categoryModel->getHomeCategory($cid);
+
+            // 判断是否为一级分类(pid为0或空)
+            if (isset($currentCategory['pid']) && $currentCategory['pid'] == 0) {
+                // 获取所有二级分类
+                $subCategories = $categoryModel->getHomeCategory(0, $cid);
+
+                if (!empty($subCategories)) {
+                    $randomProductIds = [];
+
+                    foreach ($subCategories as $subCategory) {
+                        // 从每个二级分类中随机选择2个产品
+                        $productIds = $this::scope('status')->alias('document')
+                            ->where('document.cid', $subCategory['id'])
+                            ->where('document.lang', $this->getLang())
+                            ->orderRaw('RAND()')
+                            ->limit(2)
+                            ->column('id');
+
+                        // 如果二级分类中找不到产品,则从三级分类中查找
+                        if (empty($productIds)) {
+                            // 获取该二级分类的所有子分类（三级分类）
+                            $thirdCategories = $categoryModel->getHomeCategory(0, $subCategory['id']);
+
+                            if (!empty($thirdCategories)) {
+                                // 收集所有三级分类的ID
+                                $thirdCategoryIds = array_column($thirdCategories, 'id');
+
+                                // 从所有三级分类中随机选择2个产品
+                                $productIds = $this::scope('status')->alias('document')
+                                    ->where('document.cid', 'in', $thirdCategoryIds)
+                                    ->where('document.lang', $this->getLang())
+                                    ->orderRaw('RAND()')
+                                    ->limit(2)
+                                    ->column('id');
+                            }
+                        }
+
+                        if (!empty($productIds)) {
+                            $randomProductIds = array_merge($randomProductIds, $productIds);
+                        }
+                    }
+
+                    // 如果找到了随机产品,使用这些ID继续查询
+                    if (!empty($randomProductIds)) {
+                        $id = implode(',', $randomProductIds);
+                        $params['id'] = $id;
+                        $params['random_from_subcategory'] = false; // 防止无限递归
+                        return $this->getHomeList($params);
+                    }
+                }
+            }
+        }
+
         /*flag 标识 目前仅支持AND方式调用*/
         $customWhere = '';
         if (!empty($params['flag'])) {

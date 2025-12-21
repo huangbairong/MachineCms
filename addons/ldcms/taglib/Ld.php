@@ -118,6 +118,7 @@ class Ld extends TagLib
         $order     = $tag['order'] ?? ''; //排序
         $simple    = $tag['simple'] ?? 'null'; //简洁分页
         $is_filter = $tag['is_filter'] ?? true;
+        $random_from_subcategory = $tag['random_from_subcategory'] ?? 'false'; //一级分类时从每个二级分类随机选择
 
         $var = [];
         isset($tag['tags']) ? $var['tags'] = $tag['tags'] : '';
@@ -165,6 +166,7 @@ eof;
         $params[] = "'page'=>\$page";
         $params[] = "'simple'=>\$simple";
         $params[] = "'_order'=>'{$order}'";
+        $params[] = "'random_from_subcategory'=>{$random_from_subcategory}";
 
         $var   = Random::alnum(10);
         $parse .= '$__' . $var . '__=\addons\ldcms\model\Document::instance()->getHomeList([' . implode(',', $params) . ']);';
