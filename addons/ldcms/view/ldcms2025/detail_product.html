@@ -41,6 +41,7 @@
 
                 <!-- 产品标题 -->
                 <div class="product-title-header">
+                    <em class="fas fa-info-circle"></em>
                     <h2 class="product-title">{$content.title}</h2>
                 </div>
 
@@ -48,7 +49,7 @@
                 <div class="product-gallery mb-4">
                     <div class="d-flex" style="gap: 10px;">
                         <!-- 左侧缩略图列表 (1份) -->
-                        <div class="gallery-thumbs-wrapper" style="width: 80px; flex-shrink: 0;">
+                        <div class="gallery-thumbs-wrapper" style="width: 100px; flex-shrink: 0;">
                             <div class="swiper-container gallery-thumbs">
                                 <div class="swiper-wrapper">
                                     <!-- 主图放在第一位 -->
@@ -121,6 +122,12 @@
                         padding: 20px 20px 15px;
                         border-bottom: 2px solid var(--primary-color);
                         margin-bottom: 20px;
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                    }
+                    .product-title-header .fa-info-circle {
+                        font-size: 24px;
                     }
                     .product-title {
                         font-size: 24px;
@@ -149,6 +156,10 @@
                         transition: opacity 0.3s;
                         border: 2px solid transparent;
                         margin-bottom: 10px;
+                        display: flex;
+                    }
+                    .gallery-thumbs .swiper-slide img{
+                        margin: auto;
                     }
                     .gallery-thumbs .swiper-slide-thumb-active {
                         opacity: 1;
