@@ -25,7 +25,7 @@
                 <p>{$cate.ename}</p>
             </div>
             <div class="news-list row">
-                {ld:list cid="$cate['id']" limit='6'}
+                {ld:list cid="$cate['id']" limit='999' page='false'}
                 <div class="col-lg-6 col-md-12 wow fadeInUp" data-wow-delay="0.{$i}s">
                     <div class="row news-item">
                         <div class="col-md-4 px-0 news-item-img">

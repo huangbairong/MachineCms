@@ -103,21 +103,21 @@
 {/ld:action}
 <!-- 推荐产品 e -->
 
-<!-- 案例展示 s-->
-{ld:action action="home_block" model_table_name="case" alias="cate"}
+<!-- 产品应用 s-->
+{ld:sort cid="273"}
 <section class="case-wrapper">
     <div class="container position-relative">
         <div class="d-flex align-items-center justify-content-between">
             <div class="public-title">
-                <h3>{$cate.name}</h3>
-                <p>{$cate['ename']}</p>
+                <h3>{$item.name}</h3>
+                <p>{$item.ename}</p>
             </div>
-            <a href="{$cate.url}" class="public-more">MORE <i class="fa fa-angle-double-right"></i> </a>
+            <a href="{$item.url}" class="public-more">MORE <i class="fa fa-angle-double-right"></i> </a>
         </div>
-
+{/ld:sort}
         <div class="swiper row case-swiper">
             <ul class="swiper-wrapper">
-                {ld:list cid="$cate['id']" limit='6'}
+                {ld:list cid="273" limit='6'}
                 <li class="swiper-slide wow fadeInRight" data-wow-delay="0.{$i}s">
                     <a href="{$item.url}" title="{$item.title}">
                         <div class="swiper-slide-img">
@@ -141,8 +141,7 @@
         <div class="swiper-pagination"></div>
     </div>
 </section>
-{/ld:action}
-<!-- 案例展示 e -->
+<!-- 产品应用 e -->
 
 <!-- 新闻中心 s -->
 {ld:action action="home_block" model_table_name="news" alias="cate" key="n"}
