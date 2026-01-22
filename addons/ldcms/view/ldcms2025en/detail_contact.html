@@ -13,9 +13,9 @@
 {/ld:sort}
 <!-- neibanner end -->
 
-<!-- 内页导航 -->
+<!-- Inner Navigation -->
 {include file="neinav" /}
-<!-- 内页导航 end -->
+<!-- Inner Navigation end -->
 
 <section class="page-content contact-wrapper">
     <div class="container">
@@ -50,13 +50,13 @@
                     </div>
                     <div class="contact_br col-12 col-xl-6">
                         <form class="d-flex flex-wrap justify-content-between" action="{:addon_url('ldcms/diyform/message')}" method="post">
-                            <input type="text" name="uname" id="" placeholder="姓名 *" />
-                            <input type="tel" name="mobile" id="" placeholder="电话 *" />
-                            <input type="email" name="emails" id="" placeholder="邮箱 *" />
-                            <input type="text" name="companys" id="" placeholder="公司 *" />
-                            <textarea name="remark" id="" placeholder="请输入留言内容 *"></textarea>
+                            <input type="text" name="uname" id="" placeholder="Name *" />
+                            <input type="tel" name="mobile" id="" placeholder="Phone *" />
+                            <input type="email" name="emails" id="" placeholder="Email *" />
+                            <input type="text" name="companys" id="" placeholder="Company *" />
+                            <textarea name="remark" id="" placeholder="Please enter your message *"></textarea>
                             {:token()}
-                            <button type="submit">立即提交</button>
+                            <button type="submit">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
     </div>
 </section>
 
-<!-- 产品信息 -->
+<!-- Product Information -->
 {ld:action action="home_block" model_table_name="product" alias="cate"}
 <section class="case-wrapper">
     <div class="container position-relative">
@@ -105,12 +105,12 @@
     </div>
 </section>
 {/ld:action}
-<!-- 产品信息 e -->
+<!-- Product Information end -->
 
 <section class="page-content contact-wrapper">
     <div class="container">
         <div class="contact_map animate" data-animate="fadeInUp" data-duration="1.5s" data-delay="0.1s">
-            <h3 class="neititle">地图导航</h3>
+            <h3 class="neititle">Map Navigation</h3>
             <div class="contact_mapitem">
                 <div class="contact_b">
                     <div id="map"></div>
@@ -127,15 +127,15 @@
                     <script src="https://maps.googleapis.com/maps/api/js?key={$ld.google_maps_key}&callback=initMap" async defer></script>
                     <script type="text/javascript">
                         function initMap() {
-                            // 解析经纬度（格式：经度,纬度）
+                            // Parse longitude and latitude (format: longitude, latitude)
                             var coords = '{$ld.mpdw}'.split(',');
                             var lng = parseFloat(coords[0]);
                             var lat = parseFloat(coords[1]);
 
-                            // 创建地图中心点
+                            // Create map center point
                             var center = { lat: lat, lng: lng };
 
-                            // 初始化地图
+                            // Initialize map
                             var map = new google.maps.Map(document.getElementById('map'), {
                                 zoom: 15,
                                 center: center,
@@ -146,25 +146,25 @@
                                 fullscreenControl: true
                             });
 
-                            // 添加标记点
+                            // Add marker
                             var marker = new google.maps.Marker({
                                 position: center,
                                 map: map,
-                                title: '{$ld.company|default="公司位置"}',
+                                title: '{$ld.company|default="Company Location"}',
                                 animation: google.maps.Animation.DROP,
-                                // 自定义图标（可选）
+                                // Custom icon (optional)
                                 // icon: {
                                 //     url: '__ADDON__/ldcms2024/images/marker-icon.png',
                                 //     scaledSize: new google.maps.Size(35, 50)
                                 // }
                             });
 
-                            // 添加信息窗口
+                            // Add info window
                             var infoWindow = new google.maps.InfoWindow({
-                                content: '<div style="padding: 10px;"><h4>{$ld.company|default="公司名称"}</h4><p>{$ld.address|default="公司地址"}</p></div>'
+                                content: '<div style="padding: 10px;"><h4>{$ld.company|default="Company Name"}</h4><p>{$ld.address|default="Company Address"}</p></div>'
                             });
 
-                            // 点击标记显示信息窗口
+                            // Click marker to display info window
                             marker.addListener('click', function() {
                                 infoWindow.open(map, marker);
                             });
