@@ -1,9 +1,12 @@
 <header class="bg-white sticky-top shadow-sm">
     <div class="container h-100 px-0 d-flex align-items-center justify-content-between">
-        <div class="logo" style="width: 40px">
-            <a href="{:addon_url('ldcms/index/index')}">
-                <img src="{$ld.logo1|cdnurl}" alt="{$ld.sitetitle}" />
-            </a>
+        <div style="display: flex; align-items: center">
+            <div class="logo" style="width: 40px">
+                <a href="{:addon_url('ldcms/index/index')}">
+                    <img src="{$ld.logo1|cdnurl}" alt="{$ld.sitetitle}" />
+                </a>
+            </div>
+            <div style="font-weight: 600;color: var(--primary-color);">{$ld.compony}</div>
         </div>
        <div style="display: flex;align-items: center">
            <!-- 导航和功能按钮容器 -->
